@@ -1,0 +1,27 @@
+<app-error [errorMessage]="'Error logging in'" *ngIf="loginError"></app-error>
+<div class="container text-center">
+  <div class="talkbox-card">
+    <div class="form-group">
+      <button class="btn btn-primary" [disabled]=!loginBtnEnabled>Login with google</button>
+    </div>
+    <div class="form-group">
+      <span class="login-text-box-cover">
+        <span class="bi bi-person-bounding-box"></span>
+        <input type="text" class="username-text-box" placeholder="email" [(ngModel)]="userEmailModel" required>
+      </span>
+    </div>
+    <div class="form-group">
+      <span class="login-text-box-cover">
+        <span class="bi bi-shield-lock"></span>
+        <input [type]=inputPasswordType class="password-text-box" placeholder="password" [(ngModel)]="userPasswordModel"
+          required>
+        <span [ngClass]="{'bi-eye':showPassword, 'bi-eye-slash':!showPassword}" (mousedown)="toggleShowPassword()"
+          (mouseup)="toggleShowPassword()"></span>
+      </span>
+    </div>
+    <div class="form-group text-right">
+      <button class="btn btn-primary" id="btnLogin"  [disabled]=!loginBtnEnabled
+        (click)="login()">Login</button>
+    </div>
+  </div>
+</div>

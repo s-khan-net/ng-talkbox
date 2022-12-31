@@ -1,0 +1,28 @@
+$font-family-roboto: Roboto, sans-serif;
+$font-family-base: $font-family-roboto !default;
+$font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
+$font-size-regular: $font-size-base !default;
+$font-size-small: 0.6875rem;
+$font-size-extra-small: 0.5rem;
+$icon-size-lg: 1.5rem !default;
+$icon-size-sm: 0.923rem !default;
+$icon-size-extra-sm: 0.589rem !default;
+$body-bg: $white !default;
+$body-color: $gray-dark-95 !default;
+$font-size-regular: 0.75rem !default;
+$h1-font-size: $font-size-base * 1.25 !default; //modified from $font-size-base * 2.5 !default;
+$h2-font-size: $font-size-base * 0.875 !default; //modified from $font-size-base * 2 !default;
+$h6-font-size: 0.9rem !default;
+
+// Navbar
+$navbar-margin-left-custom: -1rem !default;
+$navbar-brand-right-padding: 0.6125rem;
+$navbar-brand-left-padding: 0.6125rem;
+$navbar-brand-padding-y: 0.4125rem;
+$navbar-brand-margin-top: 2px;
+$navbar-hover: $black-transparent-18 !default;
+$navbar-selected: $black-transparent-30 !default;
+$navbar-divider: #ffffff1a !default;
+
+// Effects
+$hover-transition: 150ms ease-in all;

@@ -1,0 +1,32 @@
+
+
+@function z($name) {
+  @if index($z-indexes, $name) {
+    @return (length($z-indexes) - index($z-indexes, $name)) + 1;
+  } @else {
+    @warn 'There is no item "#{$name}" in this list; choose one of: #{$z-indexes}';
+    @return null;
+  }
+}
+
+$z-indexes: (
+  "user-profile",
+  "search-results",
+  "map-layers-toggle-menu",
+  "nav-bar",
+  "modal",
+  "loader"
+);
+
+@mixin no-select {
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+@mixin no-click {
+  pointer-events: none;
+}
+
+@mixin box-shadow {
+  box-shadow: 3px 2px 8px 1px #888888;
+}

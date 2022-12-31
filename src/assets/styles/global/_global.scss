@@ -1,0 +1,25 @@
+body {
+    margin: 0; // this is set to 0 by _reboot
+    font-family: $font-family-base;
+    color: $body-color;
+    text-align: left; // 3
+    background-color: $body-bg; // 2
+    font-size: $font-size-regular;
+    overflow-y: auto;
+  }
+  
+  h1,
+  .h1 {
+    font-size: $h1-font-size;
+  }
+  
+  h2,
+  .h2 {
+    font-size: $h2-font-size;
+  }
+  
+  h6,
+  .h6 {
+    font-size: $h6-font-size;
+    margin-bottom: 0px;
+  }

@@ -1,0 +1,11 @@
+@import '../base/colours';
+
+.talkbox-card {
+    box-sizing: border-box;
+    box-shadow:0px 0px 7px -2px $gray-mid-60;
+    margin:9px;
+    padding: 9px;
+    align-content: center;
+    display: inline-block;
+    border-radius: 9px;
+}

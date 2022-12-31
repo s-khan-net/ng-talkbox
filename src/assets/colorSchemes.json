@@ -1,0 +1,39 @@
+[
+    {
+        "name":"Default",
+        "primaryColor":"#599bb3"
+    },
+    {
+        "name":"Pink",
+        "primaryColor":"#e75480"
+    },
+    {
+        "name":"Bloodred",
+        "primaryColor":"#bb0a1e"
+    },
+    {
+        "name":"Navy",
+        "primaryColor":"#000080"
+    },
+    {
+        "name":"Grey",
+        "primaryColor":"#DDD"
+    },
+    {
+        "name":"Purple",
+        "primaryColor":"#5E17EB"
+    },
+    
+    {
+        "name":"Eggplant",
+        "primaryColor":"#483248"
+    },
+    {
+        "name":"Ochre",
+        "primaryColor":"#FFBD59"
+    },
+    {
+        "name":"Green",
+        "primaryColor":"#008037"
+    }
+]

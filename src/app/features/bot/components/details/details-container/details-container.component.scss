@@ -1,0 +1,31 @@
+@import "../../../../../../assets/styles/base/colours";
+
+.details-container {
+  padding-left: 33px;
+  padding-top: 19px;
+  width: fit-content;
+}
+
+.name-panel {
+  padding-left: 34px;
+  padding-top: 12px;
+
+  input {
+    border-style: none;
+    border-bottom: 1px solid $gray-mid-66;
+    text-align: center;
+  }
+
+  .name-empty-error {
+    border-style: none;
+    border-bottom: 1px solid red;
+  }
+}
+
+// @media (max-width: 991.98px) {
+//   .details-container {
+//     padding-left: 12px;
+//     padding-top: 19px;
+//     width: fit-content;
+//   }
+// }

@@ -1,0 +1,24 @@
+<nav id="sidebar" [ngClass]="{'active':!openSidebar}">
+    <div class="custom-menu">
+        <div id="sidebarCollapse" class="toggler" (click)="toggleSidebar()">
+            <i class="bi bi-arrow-right" *ngIf="!openSidebar"></i>
+            <i class="bi bi-arrow-left" *ngIf="openSidebar"></i>
+        </div>
+    </div>
+    <div class="p-2 pt-5">
+
+        <!-- menu comes here -->
+        <ul class="list-unstyled components mb-5">
+            <li *ngFor="let item of pages" >
+                <div class="sidenav-link" (click)=openPage(item)>
+                    <div class="menu-item-icon">
+                        <i class="{{item.icon}}" [ngClass]="{'icon21':openSidebar,'icon28':!openSidebar}"></i>
+                    </div>
+                    <div class="menu-item-text" [ngClass]="{'hide':!openSidebar}">
+                        {{item.name}}
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

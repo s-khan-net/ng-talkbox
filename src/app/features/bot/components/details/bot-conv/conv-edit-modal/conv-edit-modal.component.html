@@ -1,0 +1,53 @@
+<div class="modal-header">
+    <div class="modal-title">Hi there!</div>
+    <div class="btn-round" (click)="dismiss()" aria-label="Close">
+        <i class="bi bi-x-circle"></i>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <app-text-editor [text]="fromParent.text" (updateText)="onUpdatetext($event)"></app-text-editor>
+        </div>
+    </div>
+    <div *ngIf="fromParent.type == 'option'">
+        <div class="row" *ngFor="let option of parentOptions; let i = index">
+            <div class="col-sm-0 col-md-1"></div>
+            <div class="col-sm-5 col-md-5">
+                <input type="text" value="{{option.text}}" id="{{option.value}}" maxlength="12"
+                    (keyup)="updateOptionText($event, option.value)" [ngStyle]="{'border': option.text.length < 1 ? '2px solid #BB0034': ''}"/>
+            </div>
+            <div class="col-sm-2 col-md-2">
+                <div *ngIf="i == 0">
+                    <!-- <button type="button" class="btn btn-outline-primary" (click)="addOption(option.value)">+</button> -->
+                    <div class="btn-round" (click)="addOption(option.value)">
+                        <i class="bi bi-plus-circle"></i>
+                    </div>
+                </div>
+                <div class="btn-group" role="group" *ngIf="i > 0 && i<4">
+                    <!-- <button type="button" class="btn btn-outline-primary"
+                        (click)="removeOption(option.value)">-</button>
+                    <button type="button" class="btn btn-outline-primary" (click)="addOption(option.value)">+</button> -->
+                    <div class="btn-round" (click)="removeOption(option.value)">
+                        <i class="bi bi-dash-circle"></i>
+                    </div>
+                    <div class="btn-round" (click)="addOption(option.value)">
+                        <i class="bi bi-plus-circle"></i>
+                    </div>
+                </div>
+                <div *ngIf="i == 4">
+                    <div class="btn-round" (click)="removeOption(option.value)">
+                        <i class="bi bi-dash-circle"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4"></div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="btn-group" role="group">
+        <button type="button" class="btn btn-outline-primary" ngbAutofocus (click)="saveOptions()">Save</button>
+        <button type="button" class="btn btn-outline-primary" (click)="dismiss()">Cancel</button>
+    </div>
+</div>

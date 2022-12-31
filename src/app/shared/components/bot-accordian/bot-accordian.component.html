@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="row" (click)="toggle()">
+        <div class="col-md-12 ui-section-header">
+            {{title}}
+            <span style="float: right;">^</span>
+        </div>
+    </div>
+    <div class="row" [hidden]="!showPanel">
+        <!--UI design panel-->
+        test panel
+    </div>
+</div>

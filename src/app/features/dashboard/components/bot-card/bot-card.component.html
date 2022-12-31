@@ -1,0 +1,27 @@
+<div [ngClass]="{'bot-card':bot?.canEdit, 'bot-card-disabled':!bot?.canEdit}"
+    [style.backgroundColor]="bot?.talkBoxParams?.talkboxBackGround ?? '' | lightColor" (click) = "botDetails(bot)">
+    <table class="bot-table">
+        <tr aria-described-by="col1">
+            <td rowspan="2">
+                <div class="bot-icon">
+                    <div [style.height.px]="bot?.startUpParams?.startIconSize?.height"
+                        [style.width.px]="bot?.startUpParams?.startIconSize?.width"
+                        [style.backgroundColor]="bot?.startUpParams?.startIconBackground"
+                        [style.borderRadius]="borderRadius+borderRadiusP" [style.boxShadow]="s_boxshadow"
+                        style="margin: 0 auto">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <table style="width: 100%">
+                    <tr>
+                        <td class="bot-name">{{bot?.name}}</td>
+                    </tr>
+                    <tr>
+                        <td class="bot-description">{{bot?.description}}</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>

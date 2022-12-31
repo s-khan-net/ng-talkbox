@@ -1,0 +1,22 @@
+<div class="name-panel">
+    <input type="text" [(ngModel)]="bot.name" maxlength="12" required [ngClass]="{'name-empty-error':bot.name.length == 0}" />
+    <span (click)=save() class="btn btn-info" style="float: right;" *ngIf="component?.name === 'design' || component?.name === 'conversation' || component?.name === 'settings'" >publish</span>
+</div>
+<div *ngIf="component === undefined" class="details-container">
+    BLANK
+</div>
+<div *ngIf="component?.name === 'design'" class="details-container">
+    <app-bot-ui-design [bot]="bot"></app-bot-ui-design>
+</div>
+<div *ngIf="component?.name === 'conversation'" class="details-container">
+    <app-bot-conv [bot]="bot"></app-bot-conv>
+</div>
+<div *ngIf="component?.name === 'share'" class="details-container">
+    SHARE
+</div>
+<div *ngIf="component?.name === 'settings'" class="details-container">
+    <app-bot-settings [bot]="bot" ></app-bot-settings>
+</div>
+<div *ngIf="component?.name === 'help'" class="details-container">
+    HELP
+</div>

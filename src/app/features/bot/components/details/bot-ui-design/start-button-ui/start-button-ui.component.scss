@@ -1,0 +1,106 @@
+@import "../../../../../../../assets/styles/base/colours";
+
+.bot-icon {
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+
+.start-icon-text {
+  width: 69%;
+}
+
+.feature-label {
+  font-size: small;
+}
+
+//
+// Switch
+//
+
+.form-switch {
+  padding-left: 2.5em;
+
+  .form-check-input {
+    width: 2em;
+    margin-left: -2.5em;
+    background-image: #fff;
+    background-position: left center;
+    border-radius: 2em;
+    transition: background-position 0.15s ease-in-out;
+
+    &:focus {
+      background-image: #ccc;
+    }
+
+    &:checked {
+      background-position: right center;
+
+      // @if $enable-gradients {
+      //   background-image: escape-svg($form-switch-checked-bg-image), var(--#{$variable-prefix}gradient);
+      // } @else {
+      //   background-image: escape-svg($form-switch-checked-bg-image);
+      // }
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+    }
+  }
+}
+
+input {
+  border-style: initial;
+
+}
+.color-margin {
+  padding-left: 0px;
+  margin-top: 9px;
+
+  input {
+    width: 32px;
+    cursor: default;
+    
+  }
+}
+
+.col-margin {
+  margin-top: 9px;
+}
+
+#start-text {
+  background-color: $gray-pale-14;
+  padding:3px;
+  font-size: small;
+}
+
+#start-button-text {
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px !important;
+  font-weight: 400;
+  position: relative;
+  z-index: 214748000;
+  cursor: pointer;
+  background-color: #fff;
+  color: #666;
+  padding: 3px 8px;
+  line-height: 1.5;
+  border-radius: 0.625rem !important;
+  white-space: normal;
+  word-break: break-word;
+  text-overflow: ellipsis;
+  max-width: 105px;
+  max-height: 69px;
+  margin-left: -113px;
+  box-shadow: 0 0 20px 0 rgb(0 0 0 / 15%);
+  animation: launcher-frame-appear 0.25s ease forwards;
+
+  &.before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: auto;
+    right: -15px;
+    top: 28%;
+    bottom: auto;
+    border: 8px solid;
+    border-color: transparent transparent transparent #fff;
+  }
+}

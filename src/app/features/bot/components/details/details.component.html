@@ -1,0 +1,4 @@
+<div class="wrapper">
+    <app-sidebar (selectedPage) = "getPage($event)"></app-sidebar>
+    <app-details-container [component] = "page" [bot]=bot style="width: 100%;"></app-details-container>
+</div>

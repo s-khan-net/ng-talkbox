@@ -1,0 +1,22 @@
+<div class="dropdown user" #user id=userComponent (click)="toggleUserNav()">
+    <div *ngIf="userObj!=null; then userPresent else nouser"></div>
+    <ng-template #nouser>
+        <!-- <i class="bi bi-pgerson-bounding-box bi-lg"></i> -->
+        <a class="btn btn-sm" href="login" id=btnLogin>login</a>
+    </ng-template>
+    <ng-template #userPresent>
+        <div class="dropdown-toggle user" data-toggle="dropdown">
+            <img [src]="userObj?.avatar" class="rounded-circle user" style="width: 32px;">
+            <span>{{userObj?.name}}</span>
+            <span class="caret user"></span>
+        </div>
+        <ul class="dropdown-menu" #userMnu [class.show]="showUserNav" style="margin-left: -127px;">
+            <li class="dropdown-item">My Dashboard</li>
+            <li class="dropdown-item">{{userObj?.role}}</li>
+            <!-- <li class="dropdown-item"  role="button">
+          <div class="btn btn-sm btn-info">Profile</div>
+        </li> -->
+            <li class="dropdown-item" role="button" id="btnLogout" (click) = 'logout()'>Logout</li>
+        </ul>
+    </ng-template>
+</div>
