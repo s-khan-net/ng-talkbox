@@ -13,26 +13,31 @@
                 <div *ngIf="item.type == 'option'">
                     <table style="width:84%">
                         <tr>
-                            <td rowspan="2" style="border-right: 1px solid #CCC; padding-right: 5px;">{{item.id}}<div class="btn-round item-abbr" title="options">O</div></td>
+                            <td rowspan="2" class="item-abbr-td">
+                                <div class="item-text">id: {{item.id}}</div>
+                                <div class="btn-round item-abbr" title="options">O</div>
+                            </td>
                             <td class="text-center">{{item.text}}</td>
                         </tr>
                         <tr>
-                            <td><div class="option-button" *ngFor="let option of item.options">{{option.text}}</div></td>
+                            <td>
+                                <div class="option-button" *ngFor="let option of item.options">{{option.text}}</div>
+                            </td>
                         </tr>
                     </table>
-                    <!-- <div class="btn-round item-abbr" title="options">O</div>
-                    <div class="item-text">{{item.text}}</div>
-                    <div class="option-button" *ngFor="let option of item.options">{{option.text}}</div> -->
                 </div>
                 <div *ngIf="item.type == 'text' && item.responseValidation == null">
-                    <table>
+                    <table style="width:84%">
                         <tr>
-                            <td rowspan="2" style="border-right: 1px solid #CCC; padding-right: 5px;">{{item.id}}<div class="btn-round item-abbr" title="options">T</div></td>
-                            <td class="text-center">{{item.text}}</td>
+                            <td rowspan="2" class="item-abbr-td">
+                                <div class="item-text">id: {{item.id}}</div>
+                                <div class="btn-round item-abbr" title="options">T</div>
+                            </td>
+                            <td>
+                                <div class="text-center">{{item.text}}</div>
+                            </td>
                         </tr>
                     </table>
-                    <!-- <div class="btn-round item-abbr" title="options">T</div>
-                    <div class="item-text">{{item.text}}</div> -->
                 </div>
                 <div *ngIf="item.type == 'text' && item.responseValidation == 'email'">
                     <div class="btn-round item-abbr" title="options">E</div>

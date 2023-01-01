@@ -26,7 +26,7 @@ export class BotSettingsComponent implements OnInit {
   public addReferrer(i: number) {
     let ref = false;
     this._referrers.forEach(element => {
-      if (element.length <= 2)
+      if (element.length <= 3 || element.indexOf('.') == -1)
         ref = true;
     });
     if (ref)
@@ -62,9 +62,6 @@ export class BotSettingsComponent implements OnInit {
 
   private _checkDisabled() {
     if (!_.isEqual(this._referrers, this.bot.referrers)) {
-      this.saveDisabled = false;
-    }
-    else {
       this._referrers.forEach(element => {
         if (element.length > 3 && element.indexOf('.') > -1) {
           this.saveDisabled = false;

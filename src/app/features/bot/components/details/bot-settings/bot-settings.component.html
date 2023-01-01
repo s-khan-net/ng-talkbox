@@ -11,7 +11,7 @@
     <div class="col-md-12">
         <table>
             <tr *ngFor="let referrer of _referrers; let i = index; trackBy: trackByFn">
-                <td>
+                <td style="width: 75%;">
                     <div class="row">
                         <div class="col-md-12">
                             <input type="text" id="{{i}}" maxlength="32" [(ngModel)]="_referrers[i]" [attr.title]="reffererErrTitle" autocomplete="off"
@@ -20,14 +20,14 @@
                         </div>
                     </div>
                 </td>
-                <td style="vertical-align:top">
+                <td style="width: 25%;">
                     <div class="btn-group" role="group" *ngIf="i+1 < _referrers.length && i > 0">
                         <div class="btn-round" (click)="removeReferrer(i)">
                             <i class="bi bi-dash-circle"></i>
                         </div>
                     </div>
                     <div class="btn-group" role="group" *ngIf="i+1 == _referrers.length">
-                        <div class="btn-round" (click)="removeReferrer(i)" *ngIf="i >= 0">
+                        <div class="btn-round" (click)="removeReferrer(i)" *ngIf="i > 0">
                             <i class="bi bi-dash-circle"></i>
                         </div>
                         <div class="btn-round" (click)="addReferrer(i)">

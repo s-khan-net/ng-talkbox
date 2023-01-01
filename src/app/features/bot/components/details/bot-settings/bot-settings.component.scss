@@ -25,6 +25,11 @@
   table { 
     width: 100%;
 
+    td {
+      vertical-align: top;
+      margin-top: 3px;
+    }
+
     input {
       width: 100%;
     }

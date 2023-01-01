@@ -29,6 +29,7 @@
   height: 100%;
   min-height: 540px;
   // background-color: $gray-pale-5;
+  color: $gray-dark-80;
   overflow: hidden;
   overflow-y: scroll;
   text-align: center;
@@ -36,13 +37,14 @@
 
   .conv-item {
     @include no-select;
-    
+
     border: 1px solid $aliceblue-28;
     background-color: $gray-pale-5;
     border-radius: 4px;
-    width: 272px;
+    max-width: 472px;
     margin: 7px;
     padding-left: 5px;
+    min-height: 60px;
 
     span {
       float: right;
@@ -54,7 +56,12 @@
         color: $cornflowerblue;
       }
     }
-
+    .item-abbr-td {
+      border-right: 1px solid #CCC;
+      padding-right: 5px;
+      width:15%;
+      vertical-align: middle;
+    }
     .item-abbr {
       // @include box-shadow;
       // font-weight: bold;
@@ -88,5 +95,3 @@
     }
   }
 }
-
-
