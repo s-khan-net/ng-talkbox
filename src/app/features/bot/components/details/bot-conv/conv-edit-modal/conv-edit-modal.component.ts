@@ -120,7 +120,11 @@ export class ConvEditModalComponent implements OnInit {
     this.dismiss();
     this._changeDetectorRef.detectChanges();
   }
-  public linkedQuestionEdit(id: any, val: any) {
-    
+  public linkedQuestionEdit(linkedQuestion: any) {
+
+  }
+
+  public addLinkedQuestion(option: any) {
+
   }
 }

@@ -6,10 +6,13 @@ import { IConv } from 'src/app/models/bot.model';
 })
 export class ConvDisplayPipe implements PipeTransform {
 
-  transform(conv: any, id: any, value: any): [IConv] {
-    return conv.filter((x: any) => {
-      return x.id == `${id}${value}`;
-    });
+  transform(conv: any, id: any): [IConv] {
+    let res = []
+    if (conv && id) {
+      res = conv.filter((x: any) => {
+        return x.id.toString() == id.toString();
+      });
+    }
+    return res
   }
-
 }

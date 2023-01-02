@@ -52,12 +52,27 @@
                     <div class="offset-md-1 col-md-11 left-padding-0">
 
                         <div class="conv-box"
-                            *ngIf="(conv | convDisplay: fromParent.id:option.value).length > 0; else createTemplate">
-                            <div class="conv-item"
-                                *ngFor="let item of (conv | convDisplay: fromParent.id:option.value)">
-                                <div class="linked-question">Linked question id: {{fromParent.id}}{{option.value}}
+                            *ngIf="(conv | convDisplay: option.linkedQuestion).length > 0; else createTemplate">
+                            <div class="conv-item" *ngFor="let item of (conv | convDisplay: option.linkedQuestion)">
+                                <div class="linked-question">
+                                    <div class="row">
+                                        <div class="col-md-3">linked question:</div>
+                                        <div class="col-md-8">
+                                            <select id="{{option.value}}" [(ngModel)]="option.linkedQuestion"
+                                                (change)="addLinkedQuestion(option)">
+                                                <ng-container *ngFor="let question of conv">
+                                                    <option
+                                                        *ngIf="question.id!='66666-99999-00000' && question.id!= fromParent.id"
+                                                        id="{{question.id}}" value="{{question.id}}"
+                                                        [selected]="option.linkedQuestion == question.id">
+                                                        {{question.text}}
+                                                    </option>
+                                                </ng-container>
+                                            </select>
+                                        </div>
+                                    </div>
                                     <span class="bi bi-gear-wide-connected btn-round" title="Edit"
-                                        (click)="linkedQuestionEdit(fromParent.id,option.value)"></span>
+                                        (click)="linkedQuestionEdit(option.linkedQuestion)"></span>
                                 </div>
                                 <table style="width:84%">
                                     <tr>
@@ -81,10 +96,24 @@
                         </div>
                         <ng-template #createTemplate>
                             <div class="linked-question">
-                                link a question (dropdown with all questions????)
+                                <div class="row">
+                                    <div class="col-md-3">link a question:</div>
+                                    <div class="col-md-8">
+                                        <select id="{{option.value}}" [(ngModel)]="option.linkedQuestion"
+                                            (change)="addLinkedQuestion(option)">
+                                            <ng-container *ngFor="let question of conv">
+                                                <option
+                                                    *ngIf="question.id!='66666-99999-00000' && question.id!= fromParent.id"
+                                                    id="{{question.id}}" value="{{question.id}}"
+                                                    [selected]="option.linkedQuestion == question.id">
+                                                    {{question.text}}
+                                                </option>
+                                            </ng-container>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </ng-template>
-
                     </div>
                 </div>
             </div>
