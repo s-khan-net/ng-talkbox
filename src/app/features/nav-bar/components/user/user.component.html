@@ -11,7 +11,7 @@
             <span class="caret user"></span>
         </div>
         <ul class="dropdown-menu" #userMnu [class.show]="showUserNav" style="margin-left: -127px;">
-            <li class="dropdown-item">My Dashboard</li>
+            <li class="dropdown-item" role="button" (click)="redirectTo('dashboard')">My Dashboard</li>
             <li class="dropdown-item">{{userObj?.role}}</li>
             <!-- <li class="dropdown-item"  role="button">
           <div class="btn btn-sm btn-info">Profile</div>

@@ -9,6 +9,7 @@ export interface IBot {
     createdBy?: string;
     modifiedBy?: string;
     conv?: IConv[];
+    firstQuestion?: string;
     startUpParams?: IStartUpParams;
     talkBoxParams?: ITalkboxParams;
     themeColors?: IThemeColors;

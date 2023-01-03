@@ -41,6 +41,10 @@ export class UserComponent implements OnInit {
     console.log('showing....', this.showUserNav)
   }
 
+  public redirectTo(keyword: string) {
+    this._router.navigateByUrl('/' + keyword);
+  }
+
   public logout(): void {
     this._authenticationService.logout();
     window.location.href = '';

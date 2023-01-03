@@ -48,7 +48,7 @@ export class ConvEditModalComponent implements OnInit {
   public updateOptionText(event: any, value: string) {
     this.parentOptions.forEach((ele: any) => {
       if (ele.value === value)
-        ele.text = event.target.value
+        ele.text = event.target.value.replace("\n", "<br/>");
     });
   }
 
