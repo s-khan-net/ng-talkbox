@@ -35,49 +35,16 @@
                                                         class="linked-question"><i class="bi bi-link-45deg"></i>:
                                                         {{option.linkedQuestion}}</div>
                                                     <div *ngIf="!option.linkedQuestion"
-                                                        title="option is not linked to a question"><i
-                                                            class="bi bi-x linked-question" style="color:red"></i></div>
+                                                        title="option is not linked to a question"
+                                                        class="linked-question">
+                                                        <i class="bi bi-link-45deg"></i>:<i class="bi bi-x"
+                                                            style="color:red"></i>
+                                                    </div>
                                                 </div>
                                             </ng-container>
                                         </div>
                                     </td>
                                 </tr>
-                                <!-- <tr>
-                                    <td style="padding-top:0.5em;padding-left:0.5em;text-align:left">
-                                        <table style="width:100%">
-                                            <tr *ngFor="let option of item.options">
-                                                <td style="width:30%">
-                                                    <div class="option-button" *ngIf="option.text.length <= 5">
-                                                        {{option.text}}</div>
-                                                    <div class="option-button" *ngIf="option.text.length > 5">
-                                                        {{option.text.substring(0,4)}}...</div>
-                                                    <span style="float:right">→</span>
-                                                </td>
-                                                <td style="vertical-align:middle">
-                                                    <ng-container
-                                                        *ngFor="let item of (conv | convDisplay: option.linkedQuestion)">
-                                                        <div class="row" *ngIf="item; else createTemplate">
-                                                            <div class="col-md-2">
-                                                                <div class="btn-round item-abbr"
-                                                                    title="{{(item | convTypeAbbr).desc}}">
-                                                                    {{(item | convTypeAbbr).abbr}}
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-10">
-                                                                {{item.text}}
-                                                            </div>
-                                                        </div>
-                                                        <ng-template #createTemplate>
-                                                            <div class="row">
-                                                                create
-                                                            </div>
-                                                        </ng-template>
-                                                    </ng-container>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr> -->
                             </tbody>
                         </table>
                     </div>
@@ -90,6 +57,23 @@
                                 </td>
                                 <td>
                                     <div class="text-center">{{item.text}}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div (mouseover)=" hoverNextQuestion(item.nextQuestion)"
+                                        (mouseout)="hoverOutNextQuestion()"
+                                        style="justify-content:center; display:flex;">
+                                        <div *ngIf=" item.nextQuestion" title="Next question: {{item.nextQuestion}}"
+                                            class="linked-question"><i class="bi bi-arrow-down"></i>:
+                                            {{item.nextQuestion}}
+                                        </div>
+                                        <div *ngIf="!item.nextQuestion"
+                                            title="There is no next question configured - therefore the one configured below it will be shown"
+                                            class="linked-question">
+                                            <i class="bi bi-arrow-down"></i>:<i class="bi bi-x" style="color:red"></i>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         </table>
@@ -117,7 +101,3 @@
         </div>
     </div>
 </div>
-
-<!-- <ng-template #confirmTemplate let-modal let-item="item">
-
-</ng-template> -->

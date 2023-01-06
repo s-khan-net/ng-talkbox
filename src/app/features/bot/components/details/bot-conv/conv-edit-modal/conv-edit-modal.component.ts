@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, Input, OnInit, Optional } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import * as _ from 'lodash';
-import { IConv } from 'src/app/models/bot.model';
+import { convType, IConv } from 'src/app/models/bot.model';
 
 @Component({
   selector: 'app-conv-edit-modal',
@@ -113,18 +113,38 @@ export class ConvEditModalComponent implements OnInit {
   public saveOptions(): void {
     let question = this.convCopy.filter((ele: any) => {
       return ele.id == this.fromParent.id
-    })[0]
-    question.options = this.parentOptions;
-    question.text = this.itemText;
-    this.conv = this.convCopy;
-    this.dismiss();
-    this._changeDetectorRef.detectChanges();
+    })[0];
+    switch (this.fromParent.type) {
+      case convType.OPTION:
+        question.options = this.parentOptions;
+        question.text = this.itemText;
+        this.conv = this.convCopy;
+        this.dismiss();
+        this._changeDetectorRef.detectChanges();
+        break;
+      case convType.TEXT:
+        this.convCopy.forEach((ele: any) => {
+          if (ele.id == this.fromParent.id) {
+            ele.text = this.itemText;
+            ele.nextQuestion = this.fromParent.nextQuestion;
+          }
+        });
+        this.conv = this.convCopy;
+        this.dismiss();
+        this._changeDetectorRef.detectChanges();
+        break;
+    }
+
   }
   public linkedQuestionEdit(linkedQuestion: any) {
 
   }
 
   public addLinkedQuestion(option: any) {
-    console.log(option)
+    console.log('selected linked question', option)
+  }
+
+  public addNextQuestion(question: any) {
+    console.log('selected next question', question)
   }
 }

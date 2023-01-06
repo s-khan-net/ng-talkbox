@@ -18,6 +18,7 @@ export class BotConvComponent implements OnInit {
   public convTypes: any = ConvTypes;
   public conv: any = [];
   public linkedQuestionHover: string = '';
+  public nextQuestionHover: string = '';
   public confirmationBoxTitle: string = '';
   public confirmationMessage: string = '';
 
@@ -31,19 +32,13 @@ export class BotConvComponent implements OnInit {
   }
 
   public editConvItem(item: IConv): void {
-    console.log('edit conv', this.bot.conv)
-    let sz = 'sm';
-    if (item.type == convType.OPTION) {
-      sz = 'lg'
-    }
     const modalRef = this._modalService.open(ConvEditModalComponent,
       {
         ariaLabelledBy: 'edit-conv',
         scrollable: true,
         windowClass: 'modal-class',
-        size: sz
+        size: 'lg'
       });
-    // const modalComponent: ConvEditModalComponent = modalRef.componentInstance;
 
     modalRef.componentInstance.fromParent = item;
     modalRef.componentInstance.conv = this.bot.conv;
@@ -97,5 +92,12 @@ export class BotConvComponent implements OnInit {
   }
   public hoverOutLinkedQuestion() {
     this.linkedQuestionHover = '';
+  }
+
+  public hoverNextQuestion(nextQuestion: string) {
+    this.nextQuestionHover = nextQuestion;
+  }
+  public hoverOutNextQuestion() {
+    this.nextQuestionHover = '';
   }
 }

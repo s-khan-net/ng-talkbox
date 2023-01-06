@@ -48,6 +48,7 @@ export interface IConv {
     type: convType;
     responseValidation?: string;
     options?: any;
+    nextQuestion?: any;
     waitForReply: boolean
 }
 
