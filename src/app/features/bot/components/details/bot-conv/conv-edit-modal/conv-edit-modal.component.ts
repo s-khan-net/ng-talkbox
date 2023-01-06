@@ -140,6 +140,10 @@ export class ConvEditModalComponent implements OnInit {
 
   }
 
+  public removeNext() {
+    this.fromParent.nextQuestion = '';
+  }
+
   public addLinkedQuestion(option: any) {
     console.log('selected linked question', option)
   }

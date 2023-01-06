@@ -17,8 +17,8 @@
                     <div class="conv-item" *ngFor="let item of (conv | convDisplay: fromParent.nextQuestion)">
                         <div class="linked-question">
                             <div class="row">
-                                <div class="col-md-5 text-right">Linked question:</div>
-                                <div class="col-md-7">
+                                <div class="col-md-5 text-right">Next question:</div>
+                                <div class="col-md-6">
                                     <select id="{{fromParent.id}}" [(ngModel)]="fromParent.nextQuestion"
                                         (change)="addNextQuestion(fromParent)">
                                         <ng-container *ngFor="let question of conv">
@@ -30,6 +30,10 @@
                                             </option>
                                         </ng-container>
                                     </select>
+                                </div>
+                                <div class="col-md-1">
+                                    <span class="bi bi-gear-wide-connected btn-round" title="Edit"
+                                (click)="removeNext()"></span>
                                 </div>
                             </div>
                             <span class="bi bi-gear-wide-connected btn-round" title="Edit"
@@ -58,8 +62,10 @@
             </div>
         </div>
         <div class="row linked-question" *ngIf="!fromParent.nextQuestion">
-            A next question is not configured for this question, therefore, the next question in the list will be
-            considered as the next question.
+            <div class="row">
+                A next question is not configured for this question, therefore, the next question in the list will be
+                considered as the next question.
+            </div>
             <div class="row">
                 <div class="col-md-3">select the question:</div>
                 <div class="col-md-8">
