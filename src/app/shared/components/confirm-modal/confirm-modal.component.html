@@ -1,0 +1,14 @@
+<div class="modal-header">
+    <div class="modal-title">{{confirmationBoxTitle}}</div>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            {{confirmationMessage}}
+        </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-info" (click)="confirm(true)">Yes</button>
+    <button type="button" class="btn btn-success" ngbAutofocus (click)="confirm(false)">No</button>
+  </div>

@@ -125,6 +125,6 @@ export class ConvEditModalComponent implements OnInit {
   }
 
   public addLinkedQuestion(option: any) {
-
+    console.log(option)
   }
 }

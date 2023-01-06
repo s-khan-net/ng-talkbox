@@ -8,6 +8,7 @@ import { ToggleButtonComponent } from './components/toggle-button/toggle-button.
 import { BotAccordianComponent } from './components/bot-accordian/bot-accordian.component';
 import { TextEditorComponent } from './components/text-editor/text-editor.component';
 import { FormsModule } from '@angular/forms';
+import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FormsModule } from '@angular/forms';
     ToggleButtonComponent,
     BotAccordianComponent,
     TextEditorComponent,
+    ConfirmModalComponent,
   ],
   imports: [
     CommonModule,

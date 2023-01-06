@@ -1,0 +1,12 @@
+@import '../../../../assets/styles/base/colours';
+@import '../../../../assets/styles/base/base-mixins';
+.modal-header {
+    @include no-select;
+    padding: 3px;
+    padding-left: 12px;
+}
+
+.modal-body {
+    @include no-select;
+    color: $gray-dark-87;
+}

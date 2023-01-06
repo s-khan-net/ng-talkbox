@@ -5,7 +5,7 @@ export class ConvBuilder {
 
     private id: string = '';
     private text: string = '';
-    private type: botType = botType.TEXT;
+    private type: convType = convType.TEXT;
     private responseValidation?: string;
     private options?: any;
     private waitForReply: boolean = false;
@@ -20,7 +20,7 @@ export class ConvBuilder {
         return new ConvBuilder()
             .withConvId('0')
             .withConvText('')
-            .withConvType(botType.TEXT)
+            .withConvType(convType.TEXT)
             .withresponseValidation('none')
             .withOptions({})
             .withWait(false)
@@ -37,7 +37,7 @@ export class ConvBuilder {
         this.responseValidation = value;
         return this;
     }
-    public withConvType(value: botType): ConvBuilder {
+    public withConvType(value: convType): ConvBuilder {
         this.type = value;
         return this;
     }
@@ -63,7 +63,7 @@ export class ConvBuilder {
         return conv;
     }
 }
-export enum botType {
+export enum convType {
     TEXT = 'text',
     MEETING = 'meeting',
     MULTI = 'multi',

@@ -8,92 +8,116 @@
     </div>
     <div class="col-md-10">
         <div class="conv-box">
-            <div class="conv-item" *ngFor="let item of conv">
-                <span class="bi bi-gear-wide-connected btn-round" title="Edit" (click)="editConvItem(item)"></span>
-                <div *ngIf="item.type == 'option'">
-                    <table style="width:84%">
-                        <tbody>
-                            <tr>
-                                <td rowspan="3" class="item-abbr-td">
-                                    <div class="item-text">id: {{item.id}}</div>
-                                    <div class="btn-round item-abbr" title="options">O</div>
-                                </td>
-                                <td class="text-center">{{item.text}}</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="option-button" *ngFor="let option of item.options">{{option.text}}</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding-top:0.5em;padding-left:0.5em;text-align:left">
-                                    <table style="width:100%">
-                                        <tr *ngFor="let option of item.options">
-                                            <td style="width:30%">
-                                                <div class="option-button" *ngIf="option.text.length <= 5">
-                                                    {{option.text}}</div>
-                                                <div class="option-button" *ngIf="option.text.length > 5">
-                                                    {{option.text.substring(0,4)}}...</div>
-                                                <span style="float:right">→</span>
-                                            </td>
-                                            <td style="vertical-align:middle">
-                                                <ng-container
-                                                    *ngFor="let item of (conv | convDisplay: option.linkedQuestion)">
-                                                    <div class="row" *ngIf="item">
-                                                        <div class="col-md-2">
-                                                            <div class="btn-round item-abbr"
-                                                                title="{{(item | convTypeAbbr).desc}}">
-                                                                {{(item | convTypeAbbr).abbr}}
+            <ng-container *ngFor="let item of conv">
+                <div class="conv-item"
+                    [ngStyle]="{'border': linkedQuestionHover == item.id ? '1px solid #1e65e5' : ''}">
+                    <span class="bi bi-gear-wide-connected btn-round" title="Edit" (click)="editConvItem(item)"></span>
+                    <span class="bi bi-trash btn-round" title="Delete" (click)="deleteConvItem(item)"></span>
+                    <div *ngIf="item.type == 'option'">
+                        <table style="width:84%">
+                            <tbody>
+                                <tr>
+                                    <td rowspan="3" class="item-abbr-td">
+                                        <div class="item-text">id: {{item.id}}</div>
+                                        <div class="btn-round item-abbr" title="{{item.type}}">O</div>
+                                    </td>
+                                    <td class="text-center">{{item.text}}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="display:flex;justify-content: center;">
+                                            <ng-container *ngFor="let option of item.options">
+                                                <div (mouseover)="hoverLinkedQuestion(option.linkedQuestion)"
+                                                    (mouseout)="hoverOutLinkedQuestion()">
+                                                    <div class="option-button">{{option.text}}</div>
+                                                    <div *ngIf="option.linkedQuestion"
+                                                        title="linked to: {{option.linkedQuestion}}"
+                                                        class="linked-question"><i class="bi bi-link-45deg"></i>:
+                                                        {{option.linkedQuestion}}</div>
+                                                    <div *ngIf="!option.linkedQuestion"
+                                                        title="option is not linked to a question"><i
+                                                            class="bi bi-x linked-question" style="color:red"></i></div>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- <tr>
+                                    <td style="padding-top:0.5em;padding-left:0.5em;text-align:left">
+                                        <table style="width:100%">
+                                            <tr *ngFor="let option of item.options">
+                                                <td style="width:30%">
+                                                    <div class="option-button" *ngIf="option.text.length <= 5">
+                                                        {{option.text}}</div>
+                                                    <div class="option-button" *ngIf="option.text.length > 5">
+                                                        {{option.text.substring(0,4)}}...</div>
+                                                    <span style="float:right">→</span>
+                                                </td>
+                                                <td style="vertical-align:middle">
+                                                    <ng-container
+                                                        *ngFor="let item of (conv | convDisplay: option.linkedQuestion)">
+                                                        <div class="row" *ngIf="item; else createTemplate">
+                                                            <div class="col-md-2">
+                                                                <div class="btn-round item-abbr"
+                                                                    title="{{(item | convTypeAbbr).desc}}">
+                                                                    {{(item | convTypeAbbr).abbr}}
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-10">
+                                                                {{item.text}}
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-10">
-                                                            {{item.text}}
-                                                        </div>
-                                                    </div>
-                                                    <div class="row" *ngIf="!item">
-                                                        create
-                                                    </div>
-                                                </ng-container>
-                                            </td>
-                                        </tr>
-                                    </table>
+                                                        <ng-template #createTemplate>
+                                                            <div class="row">
+                                                                create
+                                                            </div>
+                                                        </ng-template>
+                                                    </ng-container>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div *ngIf="item.type == 'text' && item.responseValidation == null">
+                        <table style="width:84%">
+                            <tr>
+                                <td rowspan="2" class="item-abbr-td">
+                                    <div class="item-text">id: {{item.id}}</div>
+                                    <div class="btn-round item-abbr" title="{{item.type}}">T</div>
+                                </td>
+                                <td>
+                                    <div class="text-center">{{item.text}}</div>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
+                        </table>
+                    </div>
+                    <div *ngIf="item.type == 'text' && item.responseValidation == 'email'">
+                        <div class="btn-round item-abbr" title="{{item.type}}">E</div>
+                        <div class="item-text">{{item.text}}</div>
+                    </div>
+                    <div *ngIf="item.type == 'text' && item.responseValidation == 'number'">
+                        <div class="btn-round item-abbr" title="{{item.type}}">N</div>
+                        <div class="item-text">{{item.text}}</div>
+                    </div>
+                    <div *ngIf="item.type == 'multi'">
+                        <div class="btn-round item-abbr" title="options">C</div>
+                        <div class="item-text">{{item.text}}</div>
+                        <div class="option-button" *ngFor="let option of item.options">{{option.text}}</div>
+                    </div>
+                    <div *ngIf="item.type == 'rating'">
+                        <div class="btn-round item-abbr" title="options">R</div>
+                        <div class="item-text">{{item.text}}</div>
+                        <div class="option-button" *ngFor="let option of item.options">{{option}}</div>
+                    </div>
                 </div>
-                <div *ngIf="item.type == 'text' && item.responseValidation == null">
-                    <table style="width:84%">
-                        <tr>
-                            <td rowspan="2" class="item-abbr-td">
-                                <div class="item-text">id: {{item.id}}</div>
-                                <div class="btn-round item-abbr" title="options">T</div>
-                            </td>
-                            <td>
-                                <div class="text-center">{{item.text}}</div>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div *ngIf="item.type == 'text' && item.responseValidation == 'email'">
-                    <div class="btn-round item-abbr" title="options">E</div>
-                    <div class="item-text">{{item.text}}</div>
-                </div>
-                <div *ngIf="item.type == 'text' && item.responseValidation == 'number'">
-                    <div class="btn-round item-abbr" title="options">N</div>
-                    <div class="item-text">{{item.text}}</div>
-                </div>
-                <div *ngIf="item.type == 'multi'">
-                    <div class="btn-round item-abbr" title="options">C</div>
-                    <div class="item-text">{{item.text}}</div>
-                    <div class="option-button" *ngFor="let option of item.options">{{option.text}}</div>
-                </div>
-                <div *ngIf="item.type == 'rating'">
-                    <div class="btn-round item-abbr" title="options">R</div>
-                    <div class="item-text">{{item.text}}</div>
-                    <div class="option-button" *ngFor="let option of item.options">{{option}}</div>
-                </div>
-            </div>
+            </ng-container>
         </div>
     </div>
 </div>
+
+<!-- <ng-template #confirmTemplate let-modal let-item="item">
+
+</ng-template> -->

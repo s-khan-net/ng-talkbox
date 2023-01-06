@@ -45,7 +45,7 @@ export interface IStartUpParams {
 export interface IConv {
     id: string;
     text: string;
-    type: botType;
+    type: convType;
     responseValidation?: string;
     options?: any;
     waitForReply: boolean
@@ -59,7 +59,7 @@ export interface IBotInputDTO {
     modifiedBy: string
 }
 
-export enum botType {
+export enum convType {
     TEXT = 'text',
     MEETING = 'meeting',
     MULTI = 'multi',

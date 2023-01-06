@@ -1,12 +1,4 @@
 
-export enum botConvType {
-    TEXT = 'text',
-    OPTION = 'option',
-    MULTI = 'multi',
-    RATING = 'rating',
-    MEETING = 'meeting',
-}
-
 export const ConvTypes = [
     { abbr: 'T', name: 'TEXT', desc: 'Display text' },
     { abbr: 'N', name: 'NUMERIC', desc: 'Accept a numeric field from the user' },
