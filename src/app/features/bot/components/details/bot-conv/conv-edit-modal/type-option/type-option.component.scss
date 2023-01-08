@@ -1,0 +1,106 @@
+@import "../../../../../../../../assets/styles/base/colours";
+@import "../../../../../../../../assets/styles/base/base-mixins";
+
+input {
+    width: 101%;
+}
+.left-padding-0 {
+    padding-left: 0;
+}
+.linked-question {
+    @include no-select;
+    letter-spacing: 1px;
+    padding: 5px 9px 5px 9px;
+    border-bottom: 1px solid $aliceblue-28;
+    border-radius: 4px;
+    color: $gray-dark-80;
+    font-size: small;
+}
+
+.conv-type {
+    @include no-select;
+    letter-spacing: 1px;
+    padding: 5px 9px 5px 9px;
+    background-color: $aliceblue-28;
+    border-radius: 4px;
+    margin-top: 9px;
+    color: $gray-mid-51;
+    min-width: 144px;
+  
+    &:hover {
+      @include box-shadow;
+      color: $cornflowerblue;
+    }
+  
+    span {
+      float: right;
+      &::after {
+        content: "\203A";
+      }
+    }
+  }
+  
+  .conv-box {
+    width: 100%;
+    padding: 5px;
+  
+    .conv-item {
+      @include no-select;
+      border: 1px solid $aliceblue-28;
+      background-color: $gray-pale-5;
+      border-radius: 4px;
+      max-width: 472px;
+      padding-left: 5px;
+      min-height: 60px;
+      color: $gray-dark-80;
+  
+      span {
+        float: right;
+        cursor: pointer;
+        font-size: 18px;
+        line-height: 28px;
+  
+        &:hover {
+          color: $cornflowerblue;
+        }
+      }
+      .item-abbr-td {
+        border-right: 1px solid #CCC;
+        padding-right: 5px;
+        width:15%;
+        vertical-align: middle;
+        text-align: center;
+      }
+      .item-abbr {
+        // @include box-shadow;
+        // font-weight: bold;
+        padding: 5px;
+        // background-color: $aliceblue-28;
+        width: 32px;
+        height: 32px;
+        // margin: 0 auto;
+        border-radius: 4px;
+      }
+  
+      .item-text {
+        font-size: small;
+        margin-top: 5px;
+      }
+  
+      .option-button {
+        margin-right: 5px;
+        letter-spacing: 1px;
+        box-shadow: 1px 3px 9px 0px #888888;
+        color: #ffffff;
+        font-family: Arial;
+        background-color: $cornflowerblue;
+        padding: 3px 7px;
+        font-size: 13px;
+        text-decoration: none;
+        border-radius: 4px;
+        display: inline-flex;
+        width: max-content;
+        text-shadow: 0px 1px 0px #888888;
+      }
+    }
+  }

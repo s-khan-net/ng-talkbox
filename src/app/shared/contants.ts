@@ -49,6 +49,8 @@ export const getLightColorFromBg = (hex: any): string => {
 	return getColor(c);
 }
 
+export const DEFAULT_RESPONSEVALIDATION = 'text';
+
 function getColor(c: number | null) {
 	if (!c) {
 		return '#f5f5f5';

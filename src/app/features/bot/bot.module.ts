@@ -16,6 +16,8 @@ import { BotConvComponent } from './components/details/bot-conv/bot-conv.compone
 import { ConvEditModalComponent } from './components/details/bot-conv/conv-edit-modal/conv-edit-modal.component';
 import { TalkboxComponent } from './components/details/bot-ui-design/page-view-ui/talkbox/talkbox.component';
 import { BotSettingsComponent } from './components/details/bot-settings/bot-settings.component';
+import { TypeTextComponent } from './components/details/bot-conv/conv-edit-modal/type-text/type-text.component';
+import { TypeOptionComponent } from './components/details/bot-conv/conv-edit-modal/type-option/type-option.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { BotSettingsComponent } from './components/details/bot-settings/bot-sett
     BotConvComponent,
     ConvEditModalComponent,
     TalkboxComponent,
-    BotSettingsComponent
+    BotSettingsComponent,
+    TypeTextComponent,
+    TypeOptionComponent
   ],
   imports: [
     CommonModule,

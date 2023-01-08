@@ -1,0 +1,103 @@
+<div class="row" *ngFor="let option of parentOptions; let i = index" style="margin-top:3px">
+    <div class="col-sm-0 col-md-1"></div>
+    <div class="col-sm-10 col-md-9">
+        <div class="row">
+            <div class="col-md-12">
+                <input type="text" value="{{option.text.replace('<br>','\n')}}" id="{{option.value}}" maxlength="32"
+                    (keyup)="updateOptionText($event, option.value)"
+                    [ngStyle]="{'border': option.text.length < 1 ? '2px solid #BB0034': ''}" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="offset-md-1 col-md-11 left-padding-0">
+                <div class="conv-box"
+                    *ngIf="(conv | convDisplay: option.linkedQuestion).length > 0; else createTemplate">
+                    <div class="conv-item" *ngFor="let item of (conv | convDisplay: option.linkedQuestion)">
+                        <div class="linked-question">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-3 text-right">Linked question:</div>
+                                <div class="col-md-6 col-sm-5">
+                                    <select id="{{option.value}}" [(ngModel)]="option.linkedQuestion"
+                                        (change)="addLinkedQuestion(option)">
+                                        <ng-container *ngFor="let question of conv">
+                                            <option
+                                                *ngIf="question.id!='66666-99999-00000' && question.id!= fromParent.id"
+                                                id="{{question.id}}" value="{{question.id}}"
+                                                [selected]="option.linkedQuestion == question.id">
+                                                {{question.text}}
+                                            </option>
+                                        </ng-container>
+                                    </select>
+                                </div>
+                                <div class="col-md-2 col-sm-4">
+                                    <span class="bi bi-x btn-round" title="Un-link"
+                                        (click)="linkedQuestionRemove(option)"></span>
+                                </div>
+                            </div>
+                            <span class="bi bi-gear-wide-connected btn-round" title="Edit"
+                                (click)="linkedQuestionEdit(option.linkedQuestion)"></span>
+                        </div>
+                        <table style="width:84%">
+                            <tr>
+                                <td rowspan="2" class="item-abbr-td">
+                                    <div class="btn-round item-abbr" title="{{(item | convTypeAbbr).desc}}">
+                                        {{(item | convTypeAbbr).abbr}}
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    {{item.text}}
+                                </td>
+                            </tr>
+                            <tr *ngIf="item.options">
+                                <td style="text-align:center">
+                                    <div class="option-button" *ngFor="let option of item.options">
+                                        {{option.text}}</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <ng-template #createTemplate>
+                    <div class="linked-question">
+                        <div class="row">
+                            <div class="col-md-3">link a question:</div>
+                            <div class="col-md-8">
+                                <select id="{{option.value}}" [(ngModel)]="option.linkedQuestion"
+                                    (change)="addLinkedQuestion(option)">
+                                    <ng-container *ngFor="let question of conv">
+                                        <option *ngIf="question.id!='66666-99999-00000' && question.id!= fromParent.id"
+                                            id="{{question.id}}" value="{{question.id}}"
+                                            [selected]="option.linkedQuestion == question.id">
+                                            {{question.text}}
+                                        </option>
+                                    </ng-container>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-2 col-md-2 left-padding-0">
+        <div *ngIf="i == 0">
+            <div class="btn-round" (click)="addOption(option.value)">
+                <i class="bi bi-plus-circle"></i>
+            </div>
+        </div>
+        <div class="btn-group" role="group" *ngIf="i > 0 && i<4">
+            <div class="btn-round" (click)="removeOption(option.value)">
+                <i class="bi bi-dash-circle"></i>
+            </div>
+            <div class="btn-round" (click)="addOption(option.value)">
+                <i class="bi bi-plus-circle"></i>
+            </div>
+        </div>
+        <div *ngIf="i == 4">
+            <div class="btn-round" (click)="removeOption(option.value)">
+                <i class="bi bi-dash-circle"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-0 col-md-1"></div>
+</div>

@@ -1,6 +1,8 @@
 
 export const ConvTypes = [
-    { abbr: 'T', name: 'TEXT', desc: 'Display text' },
+    { abbr: 'T', name: 'TEXT', desc: 'Display text or accept a text value from the user' },
+    { abbr: 'N', name: 'NUMERIC', desc: 'Accept a numeric field from the user' },
+    { abbr: 'E', name: 'EMAIL', desc: 'Accept a valid email from the user' },
     { abbr: 'O', name: 'OPTIONS', desc: 'A set of options for the user to choose from' },
     { abbr: 'C', name: 'CHOICES', desc: 'A set of choices for the user to choose more than one' },
     { abbr: 'R', name: 'RATING', desc: 'Present a rating selection' },

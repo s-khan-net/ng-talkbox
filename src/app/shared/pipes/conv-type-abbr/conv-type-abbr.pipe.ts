@@ -13,11 +13,20 @@ export class ConvTypeAbbrPipe implements PipeTransform {
       if (!question.responseValidation) {
         return ConvTypes.filter(x => { return x.name == 'TEXT' })[0];
       }
-      else if (question.responseValidation == 'email') {
-        return ConvTypes.filter(x => { return x.name == 'EMAIL' })[0];
+      else if (question.responseValidation.toLowerCase() == 'text') {
+        return ConvTypes.filter(x => { return x.name == 'TEXT' })[0];
       }
-      else if (question.responseValidation == 'number') {
-        return ConvTypes.filter(x => { return x.name == 'NUMERIC' })[0];
+      else if (question.responseValidation.toLowerCase() == 'email') {
+        if (question.waitForReply)
+          return ConvTypes.filter(x => { return x.name == 'EMAIL' })[0];
+        else
+          return ConvTypes.filter(x => { return x.name == 'TEXT' })[0];
+      }
+      else if (question.responseValidation.toLowerCase() == 'number') {
+        if (question.waitForReply)
+          return ConvTypes.filter(x => { return x.name == 'NUMERIC' })[0];
+        else
+          return ConvTypes.filter(x => { return x.name == 'TEXT' })[0];
       }
     }
     if (question.type == convType.OPTION) {

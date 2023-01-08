@@ -1,43 +1,25 @@
-import { ChangeDetectorRef, Component, Input, OnInit, Optional } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, Input, OnInit } from '@angular/core';
 import * as _ from 'lodash';
-import { convType, IConv } from 'src/app/models/bot.model';
 
 @Component({
-  selector: 'app-conv-edit-modal',
-  templateUrl: './conv-edit-modal.component.html',
-  styleUrls: ['./conv-edit-modal.component.scss']
+  selector: 'app-type-option',
+  templateUrl: './type-option.component.html',
+  styleUrls: ['./type-option.component.scss']
 })
-export class ConvEditModalComponent implements OnInit {
+export class TypeOptionComponent implements OnInit {
 
-  @Input() fromParent!: any;
-  @Input() conv!: any;
+  @Input() public fromParent!: any;
+  @Input() public parentOptions!: any;
+  @Input() public conv!: any;
   public convCopy: any;
   private _options: any = [];
   private _removedOptions: any = [];
   private _removedQuestions: any = [];
-  public parentOptions: any = [];
   public itemText: any;
-  constructor(@Optional() private readonly activeModal: NgbActiveModal, private _changeDetectorRef: ChangeDetectorRef) { }
+
+  constructor() { }
 
   ngOnInit(): void {
-    console.log(this.fromParent, this.conv);
-    if (this.conv)
-      this.convCopy = _.cloneDeep(this.conv)
-    this.itemText = this.fromParent.text;
-    if (this.fromParent.options)
-      this.parentOptions = [...this.fromParent.options]
-  }
-  public dismiss(sender?: boolean): void {
-    if (this.activeModal) {
-      if (sender) {
-        this.activeModal.dismiss();
-      }
-      else {
-        this.activeModal.dismiss(this.conv);
-      }
-    }
-
   }
 
   public onUpdatetext(value: any): void {
@@ -50,6 +32,7 @@ export class ConvEditModalComponent implements OnInit {
       if (ele.value === value)
         ele.text = event.target.value.replace("\n", "<br/>");
     });
+
   }
 
   public removeOption(value: string) {
@@ -110,36 +93,16 @@ export class ConvEditModalComponent implements OnInit {
     }
     console.log(this.parentOptions);
   }
-  public saveOptions(): void {
-    let question = this.convCopy.filter((ele: any) => {
-      return ele.id == this.fromParent.id
-    })[0];
-    switch (this.fromParent.type) {
-      case convType.OPTION:
-        question.options = this.parentOptions;
-        question.text = this.itemText;
-        this.conv = this.convCopy;
-        this.dismiss();
-        this._changeDetectorRef.detectChanges();
-        break;
-      case convType.TEXT:
-        this.convCopy.forEach((ele: any) => {
-          if (ele.id == this.fromParent.id) {
-            ele.text = this.itemText;
-            ele.nextQuestion = this.fromParent.nextQuestion;
-            ele.waitForReply = this.fromParent.waitForReply;
-            ele.responseValidation = this.fromParent.responseValidation;
-          }
-        });
-        this.conv = this.convCopy;
-        this.dismiss();
-        this._changeDetectorRef.detectChanges();
-        break;
-    }
 
-  }
   public linkedQuestionEdit(linkedQuestion: any) {
 
+  }
+  public linkedQuestionRemove(option: any) {
+    this.parentOptions.forEach((o: any) => {
+      if (o.text == option.text && o.value == option.value) {
+        delete o.linkedQuestion;
+      }
+    });
   }
 
   public addLinkedQuestion(option: any) {
