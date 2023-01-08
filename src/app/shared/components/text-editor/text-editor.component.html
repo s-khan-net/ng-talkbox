@@ -1,1 +1,15 @@
-<textarea id="textArea" [(ngModel)]="text" (ngModelChange)="onModelChange($event)"></textarea>
+<div class="container">
+    <div class="botton-toolbar">
+        <ng-container *ngFor="let button of buttons">
+            <span title="{{button.title}}" class="{{button.icon}}" (click)="action(button)"
+                [ngStyle]="{'background-color': button.pressed ? '#b2b2b2': ''}"></span>
+        </ng-container>
+    </div>
+    <div class="editor" id="editor" #editor contenteditable="true" (keyup)="keyup($event)" [innerHtml]="text" (dragend)="clickEditor($event)" (click)="clickEditor($event)" (dblclick)="clickEditor($event)">
+        
+    </div>
+    <span style="font-size:x-small;color: darkgray;float:right">{{count}} of {{maxQuestionText}} chars</span>
+    <div>
+        <textarea id="textArea" [(ngModel)]="text" (ngModelChange)="onModelChange($event)"></textarea>
+    </div>
+</div>

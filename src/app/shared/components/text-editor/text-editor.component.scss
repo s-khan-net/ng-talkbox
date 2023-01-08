@@ -1,0 +1,46 @@
+@import "../../../../assets//styles/base/colours";
+@import "../../../../assets//styles/base/base-mixins";
+
+.botton-toolbar {
+  @include no-select;
+  color: $gray-dark-84;
+  display: flex;
+  justify-content: center;
+  border-left: 1px solid $gray-pale-30;
+  border-right: 1px solid $gray-pale-30;
+  border-top: 1px solid $gray-pale-30;
+
+  span {
+    border-radius: 4px;
+    margin-right:3px;
+    width: 25px;
+    height: 25px;
+    transition-duration: 400ms;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+    transition-property: all;
+    cursor: pointer;
+    text-align: center;
+    font-size: larger;
+
+    &:hover {
+      background-color: $gray-pale-30;
+    }
+  }
+}
+
+.editor {
+    padding:5px 10px;
+    border:1px solid $gray-pale-30;
+    width: 100%;
+    min-height: 70px;
+    outline: 0;
+    resize: vertical;
+    color: $gray-dark-84;
+    overflow: hidden;
+    max-height: 120px;
+}
+
+.container {
+    padding: 0px !important;
+}

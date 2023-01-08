@@ -22,11 +22,6 @@ export class TypeOptionComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public onUpdatetext(value: any): void {
-    console.log(value)
-    this.itemText = value;
-  }
-
   public updateOptionText(event: any, value: string) {
     this.parentOptions.forEach((ele: any) => {
       if (ele.value === value)
