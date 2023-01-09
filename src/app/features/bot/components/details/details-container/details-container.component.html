@@ -1,7 +1,7 @@
-<div class="name-panel">
+<!-- <div class="name-panel">
     <input type="text" [(ngModel)]="bot.name" maxlength="12" required [ngClass]="{'name-empty-error':bot?.name?.length == 0}" />
     <span (click)=save() class="btn btn-info" style="float: right;" *ngIf="component?.name === 'design' || component?.name === 'conversation' || component?.name === 'settings'" >publish</span>
-</div>
+</div> -->
 <div *ngIf="component === undefined" class="details-container">
     BLANK
 </div>

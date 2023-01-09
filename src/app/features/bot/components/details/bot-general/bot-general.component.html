@@ -1,1 +1,24 @@
-<p>bot-general works!</p>
+<div class="row">
+    <div class="col-md-8 ui-section-header">Bot details</div>
+</div>
+<div class="row" style="margin-top:16px">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-2 col-sm-2 text-right">Name:</div>
+            <div class="col-md-8 col-sm-10">
+                <input type="text" [(ngModel)]="bot.name" maxlength="12" required [ngClass]="{'name-empty-error':bot?.name?.length == 0}" />
+            </div>
+            <div class="col-md-2 col-sm-0"></div>
+        </div>
+        <div class="row" style="margin-top:12px">
+            <div class="col-md-2 col-sm-2 text-right">Description:</div>
+            <div class="col-md-8 col-sm-10">
+                <input type="text" [(ngModel)]="bot.description" maxlength="12" required [ngClass]="{'name-empty-error':bot?.name?.length == 0}" />
+            </div>
+            <div class="col-md-2 col-sm-0"></div>
+        </div>
+    </div>
+    <div class="col-md-6"></div>
+    <div class="col-md-6"></div>
+    <div class="col-md-6"></div>
+</div>
