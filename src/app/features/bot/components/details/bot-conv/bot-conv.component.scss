@@ -9,7 +9,8 @@
   border-radius: 4px;
   margin-top: 9px;
   color: $gray-mid-51;
-  min-width: 144px;
+  width: 52px;
+  font-size: small;
 
   &:hover {
     @include box-shadow;
@@ -57,9 +58,9 @@
       }
     }
     .item-abbr-td {
-      border-right: 1px solid #CCC;
+      border-right: 1px solid #ccc;
       padding-right: 5px;
-      width:15%;
+      width: 15%;
       vertical-align: middle;
     }
     .item-abbr {
@@ -99,11 +100,11 @@
     }
 
     .linked-question {
-      font-size:small;
-      margin:5px;
-      border:1px solid $gray-pale-30;
+      font-size: small;
+      margin: 5px;
+      border: 1px solid $gray-pale-30;
       width: fit-content;
-      padding:3px;
+      padding: 3px;
     }
   }
 }

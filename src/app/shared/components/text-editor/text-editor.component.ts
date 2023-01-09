@@ -15,8 +15,9 @@ export class TextEditorComponent implements OnInit {
   @Input() text: any;
   @Output() updateText: EventEmitter<any> = new EventEmitter();
 
-  public selectedText: any;
-  public selectionRange: any;
+  private _htmlSelectionStartIndex: number = 0;
+  private _htmlSelectedEndIndex: number = 0;
+
   public buttons = editorsettings.buttons;
   public count: number = 0;
   public maxQuestionText = editorsettings.maxQuestionText;
@@ -35,9 +36,6 @@ export class TextEditorComponent implements OnInit {
   public action(button: any) {
     console.log(button);
     button.pressed = !button.pressed;
-    if (this.selectedText) {
-
-    }
   }
 
   public keyup(event: any) {
@@ -53,12 +51,21 @@ export class TextEditorComponent implements OnInit {
   }
   private _checkSelectedText() {
     const sel: Selection | null = window.getSelection();
-    let s = sel?.toString();
+    let textContent = sel?.anchorNode?.textContent;
+    let selectedContent = sel?.toString(); // sel?.anchorNode?.textContent?.substring(sel?.focusOffset, sel?.anchorOffset);
+    if (!textContent || !selectedContent) return;
+
     let html = this.editor?.nativeElement.innerHTML
-    if (html.indexOf(s) > -1)
-      this.selectedText = s;
-    // const s1 = sel?.anchorNode?.textContent?.substring(sel?.focusOffset, sel?.anchorOffset);
-    console.log('selected text', this.selectedText)
+    //check if textcontent is a part of html
+    let parsed = this.htmlParse(html);
+    if (parsed.indexOf(textContent) > -1) {
+      if (sel?.getRangeAt && sel?.rangeCount) {
+        let range = sel.getRangeAt(0);
+        this._htmlSelectionStartIndex = parsed.indexOf(textContent) + range.startOffset;
+        this._htmlSelectedEndIndex = this._htmlSelectionStartIndex + selectedContent.length;
+      }
+    }
+
   }
 
   public clickEditor(event: any) {
@@ -69,5 +76,13 @@ export class TextEditorComponent implements OnInit {
     //   this.selectionRange = sel.getRangeAt(0);
     // }
     // console.log('selected', s)
+  }
+
+  private htmlParse(html: string): string {
+    if (!html)
+      return '';
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    return div.innerText;
   }
 }

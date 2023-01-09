@@ -1,4 +1,5 @@
 export const BotPages = [
+    { 'name': 'details', 'icon': 'bi bi-arrow-right-square' },
     { 'name': 'design', 'icon': 'bi bi-easel' },
     { 'name': 'conversation', 'icon': 'bi bi-chat-square-text' },
     { 'name': 'share', 'icon': 'bi bi-share' },

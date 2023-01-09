@@ -10,9 +10,9 @@
         <!-- menu comes here -->
         <ul class="list-unstyled components mb-5">
             <li *ngFor="let item of pages" >
-                <div class="sidenav-link" (click)=openPage(item)>
-                    <div class="menu-item-icon">
-                        <i class="{{item.icon}}" [ngClass]="{'icon21':openSidebar,'icon28':!openSidebar}"></i>
+                <div class="sidenav-link" (click)=openPage(item) >
+                    <div class="menu-item-icon" >
+                        <i class="{{item.icon}}" [ngClass]="{'icon21':openSidebar,'icon28':!openSidebar, 'selected': selected?.name == item.name}"></i>
                     </div>
                     <div class="menu-item-text" [ngClass]="{'hide':!openSidebar}">
                         {{item.name}}

@@ -1,12 +1,12 @@
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-2 col-lg-2">
         <div class="row">
             <div class="col-sm-12 conv-type" *ngFor="let type of convTypes" title="{{type.desc}}">
                 {{type.abbr}} - {{type.name}} <span></span>
             </div>
         </div>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-6 col-lg-5" style="padding-left:0px !important">
         <div class="conv-box">
             <ng-container *ngFor="let item of conv">
                 <div class="conv-item" [ngStyle]="{'border': linkedQuestionHover == item.id ? '1px solid #1e65e5' : ''}"
@@ -95,5 +95,8 @@
                 </div>
             </ng-container>
         </div>
+    </div>
+    <div class="col-md-4 col-lg-5">
+        
     </div>
 </div>

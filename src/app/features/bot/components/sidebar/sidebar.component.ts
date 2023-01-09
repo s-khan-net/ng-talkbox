@@ -10,6 +10,7 @@ export class SidebarComponent implements OnInit {
 
   public openSidebar: boolean = true;
   public pages = BotPages;
+  public selected: any;
   @Output() selectedPage = new EventEmitter<any>();
   constructor() { }
 
@@ -21,6 +22,7 @@ export class SidebarComponent implements OnInit {
   }
 
   public openPage(page: any): void {
+    this.selected = page
     this.selectedPage.emit(page);
   }
 }

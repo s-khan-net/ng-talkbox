@@ -5,6 +5,9 @@
 <div *ngIf="component === undefined" class="details-container">
     BLANK
 </div>
+<div *ngIf="component?.name === 'details'" class="details-container">
+    <app-bot-general [bot]="bot"></app-bot-general>
+</div>
 <div *ngIf="component?.name === 'design'" class="details-container">
     <app-bot-ui-design [bot]="bot"></app-bot-ui-design>
 </div>
