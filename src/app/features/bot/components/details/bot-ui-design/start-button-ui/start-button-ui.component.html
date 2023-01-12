@@ -1,59 +1,40 @@
 <div class="row">
-    <div class="col-sm-4"><span class="feature-label">Position:</span></div>
+    <div class="col-sm-4 text-right"><span class="feature-label">Position:</span></div>
     <div class="col-sm-8">
         <span class="feature-label">Left</span><span style="margin-left: 19px;">
             <app-toggle-button id="chkStartButtonPostion" [checked]="startIconPosition" (toggle)="togglePosition()">
             </app-toggle-button>
         </span><span class="feature-label">right</span>
     </div>
-    <!--<div class="col-md-12">
-         <div class="bot-icon">
-            <div *ngIf="bot?.startUpParams?.startIconShadow?.required"
-                [style.height.px]="bot?.startUpParams?.startIconSize?.height"
-                [style.width.px]="bot?.startUpParams?.startIconSize?.width"
-                [style.backgroundColor]="bot?.startUpParams?.startIconBackground"
-                [style.borderRadius]="borderRadius+borderRadiusP"
-                [style.boxShadow]="bot?.startUpParams?.startIconShadow?.style" style="margin: 0 auto">
-                <div id="start-button-text" *ngIf="startText.length > 0"><span>{{startText}}</span></div>
-            </div>
-            <div *ngIf="!bot?.startUpParams?.startIconShadow?.required"
-                [style.height.px]="bot?.startUpParams?.startIconSize?.height"
-                [style.width.px]="bot?.startUpParams?.startIconSize?.width"
-                [style.backgroundColor]="bot?.startUpParams?.startIconBackground"
-                [style.borderRadius]="borderRadius+borderRadiusP" style="margin: 0 auto">
-                <div id="start-button-text" *ngIf="startText.length > 0"><span>{{startText}}</span></div>
-            </div>
-        </div> 
 
-    </div>-->
-    <div class="col-sm-4"><span class="feature-label">Circle Icon:</span></div>
-    <div class="col-sm-2 ">
+    <div class="col-sm-4 text-right"><span class="feature-label">Circle Icon:</span></div>
+    <div class="col-sm-2 text-right">
         <span>
             <app-toggle-button id="chkCircleIcon" [checked]="startIconRounded" (toggle)="toggleCircleIcon()">
             </app-toggle-button>
         </span>
     </div>
-    <div class="col-sm-4"><span class="feature-label">Icon color:</span></div>
+    <div class="col-sm-4 text-right"><span class="feature-label">Icon color:</span></div>
     <div class="col-sm-2 color-margin col-margin">
         <span><input [cpPosition]="'bottom-right'" [style.background-color]="bot?.startUpParams?.startIconBackground"
                 [colorPicker]="startButtonColor" (colorPickerChange)="onCPIconColor($event)" [style.color]="'#FFF'"
                 readonly /></span>
 
     </div>
-    <div class="col-sm-4"><span class="feature-label">Shadow:</span></div>
+    <div class="col-sm-4 text-right"><span class="feature-label">Shadow:</span></div>
     <div class="col-sm-2">
         <span>
             <app-toggle-button id="chkShadow" [checked]="startIconShadow" (toggle)="toggleStartBtnShadow()">
             </app-toggle-button>
         </span>
     </div>
-    <div class="col-sm-4"><span class="feature-label">Shadow color:</span></div>
+    <div class="col-sm-4 text-right"><span class="feature-label">Shadow color:</span></div>
     <div class="col-sm-2 color-margin col-margin">
         <span><input class="punctuality-colour" [cpPosition]="'bottom-right'"
                 [style.background-color]="bot?.themeColors?.themeBoxShadowColor" [colorPicker]="'#FFF'"
                 (colorPickerChange)="onCPBoxShadow($event)" [style.color]="'#FFF'" readonly /></span>
     </div>
-    <div class="col-sm-4"><span class="feature-label">start text:</span></div>
+    <div class="col-sm-4 text-right"><span class="feature-label">start text:</span></div>
     <div class="col-sm-8 col-margin">
         <span><input type="text" [(ngModel)]="startText" (ngModelChange)=updateStartText($event) id="start-text" maxlength="43" autocomplete="off"/></span>
     </div>

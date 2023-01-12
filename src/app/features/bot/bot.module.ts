@@ -19,6 +19,7 @@ import { BotSettingsComponent } from './components/details/bot-settings/bot-sett
 import { TypeTextComponent } from './components/details/bot-conv/conv-edit-modal/type-text/type-text.component';
 import { TypeOptionComponent } from './components/details/bot-conv/conv-edit-modal/type-option/type-option.component';
 import { BotGeneralComponent } from './components/details/bot-general/bot-general.component';
+import { BotPreviewComponent } from './components/details/details-container/bot-preview/bot-preview.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { BotGeneralComponent } from './components/details/bot-general/bot-genera
     BotSettingsComponent,
     TypeTextComponent,
     TypeOptionComponent,
-    BotGeneralComponent
+    BotGeneralComponent,
+    BotPreviewComponent
   ],
   imports: [
     CommonModule,

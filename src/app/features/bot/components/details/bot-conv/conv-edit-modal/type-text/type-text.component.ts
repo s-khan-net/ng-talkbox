@@ -30,7 +30,7 @@ export class TypeTextComponent implements OnInit {
   }
 
   public removeNext() {
-    this.fromParent.nextQuestion = '';
+    this.fromParent.nextQuestion = null;
   }
 
   public chkChange(event: any) {

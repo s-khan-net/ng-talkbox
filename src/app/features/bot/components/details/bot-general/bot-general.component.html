@@ -13,7 +13,7 @@
         <div class="row" style="margin-top:12px">
             <div class="col-md-2 col-sm-2 text-right">Description:</div>
             <div class="col-md-8 col-sm-10">
-                <input type="text" [(ngModel)]="bot.description" maxlength="12" required [ngClass]="{'name-empty-error':bot?.name?.length == 0}" />
+                <textarea [(ngModel)]="bot.description" cols="30" rows="5"></textarea>
             </div>
             <div class="col-md-2 col-sm-0"></div>
         </div>

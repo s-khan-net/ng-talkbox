@@ -49,7 +49,9 @@ export interface IConv {
     responseValidation?: string;
     options?: any;
     nextQuestion?: any;
-    waitForReply: boolean
+    waitForReply: boolean,
+    config?: any,
+    style?: any,
 }
 
 export interface IBotInputDTO {
