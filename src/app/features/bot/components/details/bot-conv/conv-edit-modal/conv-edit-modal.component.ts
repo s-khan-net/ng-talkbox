@@ -18,6 +18,7 @@ export class ConvEditModalComponent implements OnInit {
   private _removedQuestions: any = [];
   public parentOptions: any = [];
   public itemText: any;
+  public textError: boolean = false;
   constructor(@Optional() private readonly activeModal: NgbActiveModal, private _changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
@@ -43,6 +44,12 @@ export class ConvEditModalComponent implements OnInit {
   public onUpdatetext(value: any): void {
     console.log(value)
     this.itemText = value;
+    if (!value || value.length == 0) {
+      this.textError = true;
+    }
+    else {
+      this.textError = false;
+    }
   }
 
   public updateOptionText(event: any, value: string) {
@@ -111,6 +118,7 @@ export class ConvEditModalComponent implements OnInit {
     console.log(this.parentOptions);
   }
   public saveOptions(): void {
+    if (this.textError) return;
     let question = this.convCopy.filter((ele: any) => {
       return ele.id == this.fromParent.id
     })[0];

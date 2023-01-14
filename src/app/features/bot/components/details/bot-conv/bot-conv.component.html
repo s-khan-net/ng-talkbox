@@ -11,10 +11,13 @@
             <ng-container *ngFor="let item of conv">
                 <div class="conv-item" [ngStyle]="{'border': linkedQuestionHover == item.id ? '1px solid #1e65e5' : ''}"
                     [ngStyle]="{'border': nextQuestionHover == item.id ? '1px solid #4d4d4d' : ''}">
-                    <span class="bi bi-gear-wide-connected btn-round" title="Edit" (click)="editConvItem(item)"></span>
-                    <span class="bi bi-trash btn-round" title="Delete" (click)="deleteConvItem(item)"></span>
+                    <div class="edit-button-container">
+                        <span class="bi bi-gear-wide-connected btn-round" title="Edit"
+                            (click)="editConvItem(item)"></span>
+                        <span class="bi bi-trash btn-round" title="Delete" (click)="deleteConvItem(item)"></span>
+                    </div>
                     <div *ngIf="item.type == 'option'">
-                        <table style="width:84%">
+                        <table style="width:98%">
                             <tbody>
                                 <tr>
                                     <td rowspan="3" class="item-abbr-td">
@@ -30,7 +33,9 @@
                                             <ng-container *ngFor="let option of item.options">
                                                 <div (mouseover)="hoverLinkedQuestion(option.linkedQuestion)"
                                                     (mouseout)="hoverOutLinkedQuestion()">
-                                                    <div class="option-button">{{option.text}}</div>
+                                                    <div class="option-button" [style.boxShadow]="optionBoxShadow"
+                                                        [style.backgroundColor]="themePrimaryColor"
+                                                        [style.textShadow]="">{{option.text}}</div>
                                                     <div *ngIf="option.linkedQuestion"
                                                         title="linked to: {{option.linkedQuestion}}"
                                                         class="linked-question"><i class="bi bi-link-45deg"></i>:
@@ -50,7 +55,7 @@
                         </table>
                     </div>
                     <div *ngIf="item.type == 'text'">
-                        <table style="width:84%">
+                        <table style="width:98%">
                             <tr>
                                 <td rowspan="2" class="item-abbr-td">
                                     <div class="item-text">id: {{item.id}}</div>
@@ -77,7 +82,9 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td *ngIf="item.waitForReply">Accept a {{item.responseValidation}} input from the user
+                                <td *ngIf="item.waitForReply">
+                                    <div style="font-size:small">Accept a {{item.responseValidation}} input from the
+                                        user</div>
                                 </td>
                             </tr>
                         </table>
@@ -97,6 +104,6 @@
         </div>
     </div>
     <div class="col-md-4 col-lg-5">
-        
+
     </div>
 </div>

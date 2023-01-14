@@ -9,7 +9,6 @@ export interface IBot {
     createdBy?: string;
     modifiedBy?: string;
     conv?: IConv[];
-    firstQuestion?: string;
     startUpParams?: IStartUpParams;
     talkBoxParams?: ITalkboxParams;
     themeColors?: IThemeColors;
@@ -45,6 +44,8 @@ export interface IStartUpParams {
 export interface IConv {
     id: string;
     text: string;
+    placeholder?: string;
+    buttonText?: string;
     type: convType;
     responseValidation?: string;
     options?: any;

@@ -5,11 +5,11 @@
                 [ngStyle]="{'background-color': button.pressed ? '#b2b2b2': ''}"></span>
         </ng-container>
     </div>
-    <div class="editor" id="editor" #editor contenteditable="true" (keyup)="keyup($event)" [innerHtml]="text" (dragend)="clickEditor($event)" (click)="clickEditor($event)" (dblclick)="clickEditor($event)">
+    <div class="editor" id="editor" #editor contenteditable="true" (keyup)="keyup($event)" [innerHtml]="text" (dragend)="clickEditor($event)" (click)="clickEditor($event)" (dblclick)="clickEditor($event)" [ngStyle]="{'border': text.length == 0? '2px solid #BB0034': ''}">
         
     </div>
     <span style="font-size:x-small;color: darkgray;float:right">{{count}} of {{maxQuestionText}} chars</span>
     <div>
-        <textarea id="textArea" [(ngModel)]="text" (ngModelChange)="onModelChange($event)"></textarea>
+        <textarea id="textArea" [(ngModel)]="text" (ngModelChange)="onModelChange($event)" [ngStyle]="{'border': text.length == 0? '2px solid #BB0034': ''}"></textarea>
     </div>
 </div>

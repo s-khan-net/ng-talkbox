@@ -22,6 +22,13 @@ export class BotConvComponent implements OnInit {
   public confirmationBoxTitle: string = '';
   public confirmationMessage: string = '';
 
+  public themePrimaryColor: any;
+  public themeBoxShadowColor: any;
+  public themeTextShadowColor: any;
+  public themeHoverBackGroundColor: any;
+  public optionBoxShadow: any;
+  public optionTextShadow: any;
+
   constructor(private _modalService: NgbModal, private _config: NgbModalConfig) {
     _config.backdrop = 'static';
     _config.keyboard = false;
@@ -29,6 +36,12 @@ export class BotConvComponent implements OnInit {
 
   ngOnInit(): void {
     this.conv = _.cloneDeep(this.bot.conv || []);
+    this.themePrimaryColor = this.bot?.themeColors?.themePrimaryColor;
+    this.themeBoxShadowColor = this.bot?.themeColors?.themeBoxShadowColor;
+    this.themeTextShadowColor = this.bot?.themeColors?.themeTextShadowColor;
+    this.themeHoverBackGroundColor = this.bot?.themeColors?.themeHoverBackGroundColor;
+    this.optionBoxShadow = `1px 3px 9px 0px ${this.themeBoxShadowColor}`;
+    this.optionTextShadow = `0px 1px 0px ${this.themeTextShadowColor}`;
   }
 
   public editConvItem(item: IConv): void {
