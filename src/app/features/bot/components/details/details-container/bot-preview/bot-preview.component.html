@@ -1,8 +1,9 @@
-<div class="container">
-    
-    <div class="page">
-        <div class="col-md-12">
-            <div class="preview-button"><button (click)="preview()"><i class="bi bi-lightning-charge"></i></button></div>
+<div class="preview-tab-button" (click)="togglePreview()">preview</div>
+<div class="container" style="padding-left:0px">
+    <div class="page" [hidden]="previewToggle">
+        <div class="col-md-12" style="padding: 0px;">
+            <div class="preview-button"><button (click)="preview()"><i class="bi bi-lightning-charge"></i></button>
+            </div>
             <iframe style="border-style:none;" id="iframe" #iframe height="520px" width="432px" [srcdoc]="html">
             </iframe>
             <div class="bot-icon">

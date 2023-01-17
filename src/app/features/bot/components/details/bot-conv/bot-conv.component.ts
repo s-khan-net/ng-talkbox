@@ -55,6 +55,43 @@ export class BotConvComponent implements OnInit {
 
     modalRef.componentInstance.fromParent = item;
     modalRef.componentInstance.conv = this.bot.conv;
+    modalRef.componentInstance.optionBoxShadow = this.optionBoxShadow;
+    modalRef.componentInstance.themePrimaryColor = this.themePrimaryColor;
+
+    modalRef.result.then((result: any) => {
+      console.log(result)
+    }, (dismissObj) => {
+      if (dismissObj)
+        this.bot.conv = dismissObj;
+      this.conv = _.cloneDeep(this.bot.conv);
+    });
+  }
+
+  public addConvItem(type: any): void {
+    let item: IConv;
+    let convTemp = _.cloneDeep(this.bot.conv) || [];
+    const lastitem: IConv = convTemp[convTemp.length - 1]
+    let id: string = (Number(lastitem.id) + 1).toString();
+    item = { id: id, text: '', type: type?.convType, waitForReply: true };
+    if (type?.convType == convType.TEXT) {
+      item.responseValidation = type?.name?.toLowerCase()
+    }
+    if (type?.convType == convType.OPTION) {
+      item.options = [{ text: 'option1', value: '0' }];
+    }
+    this.conv.push(item);
+    const modalRef = this._modalService.open(ConvEditModalComponent,
+      {
+        ariaLabelledBy: 'add-conv',
+        scrollable: true,
+        windowClass: 'modal-class',
+        size: 'lg'
+      });
+
+    modalRef.componentInstance.fromParent = item;
+    modalRef.componentInstance.conv = this.conv;
+    modalRef.componentInstance.optionBoxShadow = this.optionBoxShadow;
+    modalRef.componentInstance.themePrimaryColor = this.themePrimaryColor;
 
     modalRef.result.then((result: any) => {
       console.log(result)

@@ -1,12 +1,13 @@
 <div class="row">
     <div class="col-md-2 col-lg-2">
         <div class="row">
-            <div class="col-sm-12 conv-type" *ngFor="let type of convTypes" title="{{type.desc}}">
+            <div class="col-sm-12 conv-type" *ngFor="let type of convTypes" title="{{type.desc}}"
+                (click)="addConvItem(type)">
                 {{type.abbr}} - {{type.name}} <span></span>
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-5" style="padding-left:0px !important">
+    <div class="col-md-7 col-lg-6" style="padding-left:0px !important">
         <div class="conv-box">
             <ng-container *ngFor="let item of conv">
                 <div class="conv-item" [ngStyle]="{'border': linkedQuestionHover == item.id ? '1px solid #1e65e5' : ''}"
@@ -29,7 +30,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <div style="display:flex;justify-content: center;">
+                                        <div class="option-button-container">
                                             <ng-container *ngFor="let option of item.options">
                                                 <div (mouseover)="hoverLinkedQuestion(option.linkedQuestion)"
                                                     (mouseout)="hoverOutLinkedQuestion()">
@@ -90,9 +91,42 @@
                         </table>
                     </div>
                     <div *ngIf="item.type == 'multi'">
-                        <div class="btn-round item-abbr" title="options">C</div>
-                        <div class="item-text">{{item.text}}</div>
-                        <div class="option-button" *ngFor="let option of item.options">{{option.text}}</div>
+                        <table style="width:98%">
+                            <tbody>
+                                <tr>
+                                    <td rowspan="3" class="item-abbr-td">
+                                        <div class="item-text">id: {{item.id}}</div>
+                                        <div class="btn-round item-abbr" title="{{(item | convTypeAbbr).desc}}">{{(item
+                                            | convTypeAbbr).abbr}}</div>
+                                    </td>
+                                    <td class="text-center">{{item.text}}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="option-button-container">
+                                            <ng-container *ngFor="let option of item.options">
+                                                <div>
+                                                    <div class="multi-btn" [style.boxShadow]="optionBoxShadow">
+                                                        <input type="checkbox" id="{{option.value}}" />
+                                                        <label style="margin-bottom: 0px;padding-left:3px">{{option.text}}</label>
+                                                        </div>
+                                                    <!-- <div *ngIf="option.linkedQuestion"
+                                                        title="linked to: {{option.linkedQuestion}}"
+                                                        class="linked-question"><i class="bi bi-link-45deg"></i>:
+                                                        {{option.linkedQuestion}}</div>
+                                                    <div *ngIf="!option.linkedQuestion"
+                                                        title="option is not linked to a question"
+                                                        class="linked-question">
+                                                        <i class="bi bi-link-45deg"></i>:<i class="bi bi-x-lg"
+                                                            style="color:red"></i>
+                                                    </div> -->
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div *ngIf="item.type == 'rating'">
                         <div class="btn-round item-abbr" title="options">R</div>

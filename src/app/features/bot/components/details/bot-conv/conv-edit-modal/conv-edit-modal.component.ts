@@ -12,6 +12,8 @@ export class ConvEditModalComponent implements OnInit {
 
   @Input() fromParent!: any;
   @Input() conv!: any;
+  @Input() public optionBoxShadow!: any;
+  @Input() public themePrimaryColor!: any;
   public convCopy: any;
   private _options: any = [];
   private _removedOptions: any = [];
@@ -43,7 +45,7 @@ export class ConvEditModalComponent implements OnInit {
 
   public onUpdatetext(value: any): void {
     console.log(value)
-    this.itemText = value;
+    this.fromParent.text = value;
     if (!value || value.length == 0) {
       this.textError = true;
     }
@@ -118,14 +120,15 @@ export class ConvEditModalComponent implements OnInit {
     console.log(this.parentOptions);
   }
   public saveOptions(): void {
-    if (this.textError) return;
+    if (!this.fromParent.text) return;
     let question = this.convCopy.filter((ele: any) => {
       return ele.id == this.fromParent.id
     })[0];
     switch (this.fromParent.type) {
+      case convType.MULTI:
       case convType.OPTION:
         question.options = this.parentOptions;
-        question.text = this.itemText;
+        question.text = this.fromParent.text;
         this.conv = this.convCopy;
         this.dismiss();
         this._changeDetectorRef.detectChanges();
@@ -133,7 +136,7 @@ export class ConvEditModalComponent implements OnInit {
       case convType.TEXT:
         this.convCopy.forEach((ele: any) => {
           if (ele.id == this.fromParent.id) {
-            ele.text = this.itemText;
+            ele.text = this.fromParent.text;
             ele.nextQuestion = this.fromParent.nextQuestion;
             ele.waitForReply = this.fromParent.waitForReply;
             ele.responseValidation = this.fromParent.responseValidation;

@@ -25,6 +25,7 @@ export class BotPreviewComponent implements OnChanges {
   public startIconRounded: boolean = false;
   public startIconShadow: boolean = false;
   public startIconPosition: boolean = false;
+  public previewToggle: boolean = false;
 
   public get startButtonColor(): string {
     return this.bot?.startUpParams?.startIconBackground ? this.bot.startUpParams.startIconBackground : '';
@@ -44,7 +45,7 @@ export class BotPreviewComponent implements OnChanges {
   }
 
   constructor(private _botService: BotService, private _sanitizer: DomSanitizer) { }
-  
+
   ngOnChanges(changes: SimpleChanges): void {
     if (this.bot)
       this.preview();
@@ -61,7 +62,8 @@ export class BotPreviewComponent implements OnChanges {
     delete tempBot.active;
     delete tempBot.referrers;
 
-    let firstQuestion = this.bot?.conv && this.bot?.conv?.length > 0 ? this.bot.conv[0].id : "0"
+    let firstQuestion = this.bot?.conv && this.bot?.conv?.length > 0 ? this.bot.conv[0].id : "0";
+    let stempBot = JSON.stringify(tempBot).replaceAll("'", "");
 
     const tempHTML1 = `<!DOCTYPE html>
           <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -78,7 +80,7 @@ export class BotPreviewComponent implements OnChanges {
               <style>${this._makeStartCSS(this.bot)}</style>
           </head>
           
-          <body>
+          <body style="margin-left:16px;margin-top: 4px;">
               <!--[if lt IE 7]>
                       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
                   <![endif]-->
@@ -88,7 +90,7 @@ export class BotPreviewComponent implements OnChanges {
               <iframe id="talk-box-iframe" srcdoc='<html>
               <head>
               <script> 
-              var bot = ${JSON.stringify(tempBot)};
+              var bot = ${stempBot};
               var questionDelay = 100;
               var answerDelay = 100;
               var resetQuestion = {
@@ -175,5 +177,9 @@ export class BotPreviewComponent implements OnChanges {
     else {
       return '<div id="talk-header"><div id="top-buttons"><div id="close-button" role="button">X</div></div></div>';
     }
+  }
+
+  public togglePreview() {
+    this.previewToggle = !this.previewToggle
   }
 }

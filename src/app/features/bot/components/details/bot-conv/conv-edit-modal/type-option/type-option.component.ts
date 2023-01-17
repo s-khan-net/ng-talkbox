@@ -11,6 +11,9 @@ export class TypeOptionComponent implements OnInit {
   @Input() public fromParent!: any;
   @Input() public parentOptions!: any;
   @Input() public conv!: any;
+  @Input() public optionBoxShadow!: any;
+  @Input() public themePrimaryColor!: any;
+
   public convCopy: any;
   private _options: any = [];
   private _removedOptions: any = [];

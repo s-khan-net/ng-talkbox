@@ -32,6 +32,9 @@ export class ConvTypeAbbrPipe implements PipeTransform {
     if (question.type == convType.OPTION) {
       return ConvTypes.filter(x => { return x.name == 'OPTIONS' })[0]
     }
+    if (question.type == convType.MULTI) {
+      return ConvTypes.filter(x => { return x.name == 'CHOICES' })[0]
+    }
     return res;
   }
 

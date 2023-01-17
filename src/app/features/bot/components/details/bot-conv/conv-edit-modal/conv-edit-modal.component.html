@@ -11,7 +11,7 @@
         <app-type-text [fromParent]="fromParent" [conv]="conv"></app-type-text>
     </ng-container>
     <ng-container *ngIf="fromParent.type == 'option'">
-        <app-type-option [fromParent]="fromParent" [conv]="conv" [parentOptions]="parentOptions"></app-type-option>
+        <app-type-option [fromParent]="fromParent" [conv]="conv" [parentOptions]="parentOptions" [optionBoxShadow]="optionBoxShadow" [themePrimaryColor]="themePrimaryColor"></app-type-option>
     </ng-container>
 </div>
 <div class="modal-footer">

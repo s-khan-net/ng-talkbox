@@ -48,10 +48,17 @@
                                     {{item.text}}
                                 </td>
                             </tr>
-                            <tr *ngIf="item.options">
+                            <tr>
                                 <td style="text-align:center">
-                                    <div class="option-button" *ngFor="let option of item.options">
-                                        {{option.text}}</div>
+                                    <div class="option-button-container">
+                                        <ng-container *ngFor="let option of item.options">
+                                            <div>
+                                                <div class="option-button" [style.boxShadow]="optionBoxShadow"
+                                                    [style.backgroundColor]="themePrimaryColor">
+                                                    {{option.text}}</div>
+                                            </div>
+                                        </ng-container>
+                                    </div>
                                 </td>
                             </tr>
                         </table>
@@ -76,7 +83,8 @@
                         </div>
                         <div class="row">
                             <div class="col-md-11">
-                                A lined question is not configured for this question, therefore, the next one in the list
+                                A lined question is not configured for this question, therefore, the next one in the
+                                list
                                 will
                                 be
                                 considered as the next question.

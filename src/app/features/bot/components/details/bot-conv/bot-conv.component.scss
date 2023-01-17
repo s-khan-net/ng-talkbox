@@ -42,13 +42,12 @@
     border: 1px solid $aliceblue-28;
     background-color: $gray-pale-5;
     border-radius: 4px;
-    max-width: 472px;
     margin: 7px;
     padding-left: 5px;
     min-height: 60px;
 
     .edit-button-container {
-      position:absolute;
+      position: absolute;
       right: 9%;
     }
 
@@ -84,6 +83,15 @@
       margin-top: 5px;
     }
 
+    .option-button-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-left: 3px;
+      margin-top: 5px;
+    }
+
     .option-button {
       margin-right: 5px;
       letter-spacing: 1px;
@@ -110,6 +118,19 @@
       border: 1px solid $gray-pale-30;
       width: fit-content;
       padding: 3px;
+    }
+
+    .multi-btn { 
+      margin: 7px;
+      letter-spacing: 1px;
+      background-color: transparent;
+      padding: 3px 7px;
+      text-decoration: none;
+      user-select: none;
+      border-radius: 4px;
+      display: inline-flex;
+      font-size: small;
+      width: max-content;
     }
   }
 }

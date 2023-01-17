@@ -199,9 +199,18 @@
                 let btnChoose = document.getElementById('multi-btn-choose');
                 let btnCancel = document.getElementById('multi-btn-cancel');
                 btnChoose.addEventListener('click', (_e) => {
-                    document.getElementsByClassName('cal-buttons')[0].remove();
                     let answer = '';
                     let chkArray = document.getElementsByClassName('multi-container')[0].children;
+                    //validate if an item is selected
+                    let count = 0;
+                    for (let chk of chkArray) {
+                        if (chk.children[0].checked) {
+                            count++;
+                        }
+                    }
+                    if (count == 0) {
+                        return;
+                    }
                     for (let chk of chkArray) {
                         if (chk.children[0].checked) {
                             answer += `,${chk.innerText}`;
@@ -210,6 +219,7 @@
                         chk.children[0].setAttribute('disabled', 'disabled');
                     }
                     answer = answer.substr(1, answer.length);
+                    document.getElementsByClassName('cal-buttons')[0].remove();
                     sendToServer(question.id, answer);
                     show(answer, () => {
                         setNextQuestion(question);
@@ -217,6 +227,11 @@
                 });
                 btnCancel.addEventListener('click', (_e) => {
                     // removeChatBoxCover();
+                    document.getElementsByClassName('cal-buttons')[0].remove();
+                    answer = 'None selected,'
+                    show(answer, () => {
+                        setNextQuestion(question);
+                    });
                     showBranding();
                 })
             }
@@ -261,7 +276,7 @@
                 if (question.responseValidation == 'email') {
                     regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
                 }
-                if(question.responseValidation == 'number') {
+                if (question.responseValidation == 'number') {
                     regex = /^[0-9]*$/
                 }
                 if (!val.match(regex)) {
@@ -286,7 +301,10 @@
             else {
                 for (let i = 0; i < conversation.length; i++) {
                     if (question.id == conversation[i].id) {
-                        display(conversation[i + 1].id, questionDelay)
+                        if (conversation[i + 1])
+                            display(conversation[i + 1].id, questionDelay);
+                        else
+                            display(resetQuestion, questionDelay);
                     }
                 }
             }

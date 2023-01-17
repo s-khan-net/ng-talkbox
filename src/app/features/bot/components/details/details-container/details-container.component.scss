@@ -24,7 +24,8 @@
 .preview {
   position: absolute;
   right: 0%;
-  top: 88px;
+  top: 100px;
+  z-index: 2;
 }
 
 // @media (max-width: 991.98px) {
