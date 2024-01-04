@@ -71,7 +71,10 @@ export class BotConvComponent implements OnInit {
     let item: IConv;
     let convTemp = _.cloneDeep(this.bot.conv) || [];
     const lastitem: IConv = convTemp[convTemp.length - 1]
-    let id: string = (Number(lastitem.id) + 1).toString();
+    let id: string = '0';
+    if (lastitem) {
+      id = (Number(lastitem.id) + 1).toString()
+    };
     item = { id: id, text: '', type: type?.convType, waitForReply: true };
     if (type?.convType == convType.TEXT) {
       item.responseValidation = type?.name?.toLowerCase()

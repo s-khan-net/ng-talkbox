@@ -53,6 +53,7 @@ export interface IConv {
     waitForReply: boolean,
     config?: any,
     style?: any,
+    linkedQuestion?: any
 }
 
 export interface IBotInputDTO {
