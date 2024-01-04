@@ -7,7 +7,7 @@
 node_modules/
 dist/
 coverage/
-./angular
+.angular/
 
 # Compiled Java class files
 *.class
