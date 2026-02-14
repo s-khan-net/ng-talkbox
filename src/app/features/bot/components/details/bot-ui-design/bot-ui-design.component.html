@@ -24,7 +24,7 @@
             <div class="col-xs-2 " *ngFor="let color of colorSchemes$ | async" (click)="setColorScheme(color)">
                 <div class="color-name">{{color.name}}</div>
                 <div class="color-block" [style.backgroundColor]="color.primaryColor">
-                    <i *ngIf="bot?.themeColors?.themePrimaryColor == color.primaryColor" class="bi bi-check"></i>
+                    <i *ngIf="bot.themeColors?.themePrimaryColor == color.primaryColor" class="bi bi-check"></i>
                 </div>
             </div>
         </div>

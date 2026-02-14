@@ -16,7 +16,7 @@
     </div>
     <div class="col-sm-4 text-right"><span class="feature-label">Icon color:</span></div>
     <div class="col-sm-2 color-margin col-margin">
-        <span><input [cpPosition]="'bottom-right'" [style.background-color]="bot?.startUpParams?.startIconBackground"
+        <span><input [cpPosition]="'bottom-right'" [style.background-color]="bot.startUpParams?.startIconBackground"
                 [colorPicker]="startButtonColor" (colorPickerChange)="onCPIconColor($event)" [style.color]="'#FFF'"
                 readonly /></span>
 
@@ -31,7 +31,7 @@
     <div class="col-sm-4 text-right"><span class="feature-label">Shadow color:</span></div>
     <div class="col-sm-2 color-margin col-margin">
         <span><input class="punctuality-colour" [cpPosition]="'bottom-right'"
-                [style.background-color]="bot?.themeColors?.themeBoxShadowColor" [colorPicker]="'#FFF'"
+                [style.background-color]="bot.themeColors?.themeBoxShadowColor" [colorPicker]="'#FFF'"
                 (colorPickerChange)="onCPBoxShadow($event)" [style.color]="'#FFF'" readonly /></span>
     </div>
     <div class="col-sm-4 text-right"><span class="feature-label">start text:</span></div>

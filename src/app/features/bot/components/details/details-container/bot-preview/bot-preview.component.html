@@ -7,18 +7,18 @@
             <iframe style="border-style:none;" id="iframe" #iframe height="520px" width="432px" [srcdoc]="html">
             </iframe>
             <div class="bot-icon">
-                <div *ngIf="bot?.startUpParams?.startIconShadow?.required"
-                    [style.height.px]="bot?.startUpParams?.startIconSize?.height"
-                    [style.width.px]="bot?.startUpParams?.startIconSize?.width"
-                    [style.backgroundColor]="bot?.startUpParams?.startIconBackground"
+                <div *ngIf="bot.startUpParams?.startIconShadow?.required"
+                    [style.height.px]="bot.startUpParams?.startIconSize?.height"
+                    [style.width.px]="bot.startUpParams?.startIconSize?.width"
+                    [style.backgroundColor]="bot.startUpParams?.startIconBackground"
                     [style.borderRadius]="startButtonBorder"
-                    [style.boxShadow]="bot?.startUpParams?.startIconShadow?.style" style="margin: 0 auto">
+                    [style.boxShadow]="bot.startUpParams?.startIconShadow?.style" style="margin: 0 auto">
                     <div id="start-button-text" *ngIf="startText.length > 0"><span>{{startText}}</span></div>
                 </div>
-                <div *ngIf="!bot?.startUpParams?.startIconShadow?.required"
-                    [style.height.px]="bot?.startUpParams?.startIconSize?.height"
-                    [style.width.px]="bot?.startUpParams?.startIconSize?.width"
-                    [style.backgroundColor]="bot?.startUpParams?.startIconBackground"
+                <div *ngIf="!bot.startUpParams?.startIconShadow?.required"
+                    [style.height.px]="bot.startUpParams?.startIconSize?.height"
+                    [style.width.px]="bot.startUpParams?.startIconSize?.width"
+                    [style.backgroundColor]="bot.startUpParams?.startIconBackground"
                     [style.borderRadius]="startButtonBorder" style="margin: 0 auto">
                     <div id="start-button-text" *ngIf="startText.length > 0"><span>{{startText}}</span></div>
                 </div>

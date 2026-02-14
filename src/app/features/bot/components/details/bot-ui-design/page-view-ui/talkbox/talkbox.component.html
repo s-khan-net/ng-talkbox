@@ -1,23 +1,23 @@
 <div id="talkbox" class="talkbox talkbox-active" style="display: block; bottom: 57px;">
-    <div id="talk-header" class="talk-header" [style.backgroundColor]="bot?.talkBoxParams?.headerColor">
+    <div id="talk-header" class="talk-header" [style.backgroundColor]="bot.talkBoxParams?.headerColor">
         <div id="top-buttons" class="top-buttons">
-            <div class="talk-header-text">{{bot?.talkBoxParams?.headerText}}</div>
+            <div class="talk-header-text">{{bot.talkBoxParams?.headerText}}</div>
             <div id="close-button" class="close-button" role="button">X</div>
         </div>
     </div>
     <div id="inner-talkbox">
-        <div id="chat-container" [style.backgroundColor]="bot?.talkBoxParams?.talkboxBackGround">
-            <div id="chat-box" [style.backgroundColor]="bot?.talkBoxParams?.talkboxBackGround"
+        <div id="chat-container" [style.backgroundColor]="bot.talkBoxParams?.talkboxBackGround">
+            <div id="chat-box" [style.backgroundColor]="bot.talkBoxParams?.talkboxBackGround"
                 class="chat-box-branding">
                 <div class="bot-text-wrapper" [style.backgroundColor]="botTextWrapperColor">
                     <div class="text"> How are you </div>
                     <div class="options-container" id="0-options">
-                        <div data-id="0" data-value="0" id="00" [style.backgroundColor]="bot?.themeColors?.themePrimaryColor" [style.boxShadow]="boxShadow" [style.textShadow]="textShadow">OK</div>
-                        <div data-id="0" data-value="1" id="01" [style.backgroundColor]="bot?.themeColors?.themePrimaryColor" [style.boxShadow]="boxShadow" [style.textShadow]="textShadow">Cool</div>
-                        <div data-id="0" data-value="2" id="02" [style.backgroundColor]="bot?.themeColors?.themePrimaryColor" [style.boxShadow]="boxShadow" [style.textShadow]="textShadow">Bad</div>
+                        <div data-id="0" data-value="0" id="00" [style.backgroundColor]="bot.themeColors?.themePrimaryColor" [style.boxShadow]="boxShadow" [style.textShadow]="textShadow">OK</div>
+                        <div data-id="0" data-value="1" id="01" [style.backgroundColor]="bot.themeColors?.themePrimaryColor" [style.boxShadow]="boxShadow" [style.textShadow]="textShadow">Cool</div>
+                        <div data-id="0" data-value="2" id="02" [style.backgroundColor]="bot.themeColors?.themePrimaryColor" [style.boxShadow]="boxShadow" [style.textShadow]="textShadow">Bad</div>
                     </div>
                 </div>
-                <div class="text res-text" [style.backgroundColor]="bot?.themeColors?.themeHoverBackGroundColor">OK<div></div>
+                <div class="text res-text" [style.backgroundColor]="bot.themeColors?.themeHoverBackGroundColor">OK<div></div>
                 </div>
                 <div class="bot-text-wrapper" [style.backgroundColor]="botTextWrapperColor">
                     <div class="text"> That's Good </div>
