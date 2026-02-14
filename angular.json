@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ng-talkbox:build:production"
+              "buildTarget": "ng-talkbox:build:production"
             },
             "development": {
-              "browserTarget": "ng-talkbox:build:development"
+              "buildTarget": "ng-talkbox:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ng-talkbox:build"
+            "buildTarget": "ng-talkbox:build"
           }
         },
         "test": {
