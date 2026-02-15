@@ -3,7 +3,8 @@ import { ConvTypes } from 'src/app/features/bot/components/details/bot-conv/bot-
 import { convType, IConv } from 'src/app/models/bot.model';
 
 @Pipe({
-  name: 'convTypeAbbr'
+    name: 'convTypeAbbr',
+    standalone: false
 })
 export class ConvTypeAbbrPipe implements PipeTransform {
 
