@@ -3,7 +3,8 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 @Component({
   selector: 'app-bot-accordian',
   templateUrl: './bot-accordian.component.html',
-  styleUrls: ['./bot-accordian.component.scss']
+  styleUrls: ['./bot-accordian.component.scss'],
+  standalone: false
 })
 export class BotAccordianComponent implements OnInit, OnChanges {
 

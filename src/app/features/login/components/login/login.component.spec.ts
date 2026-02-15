@@ -1,5 +1,5 @@
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { LoginComponent } from './login.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
@@ -7,6 +7,7 @@ import { AuthenticationService } from 'src/app/core/services/authentication/auth
 import { UserBuilder } from 'Test/data/user/user-builder.model';
 import { of, throwError } from 'rxjs';
 import { DashboardComponent } from 'src/app/features/dashboard/components/dashboard/dashboard.component';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -15,14 +16,10 @@ describe('LoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule.withRoutes(
-          [{path: 'dashboard', component: DashboardComponent}]
-        ),
-        HttpClientTestingModule
-      ],
-      declarations: [LoginComponent, DashboardComponent]
-    })
+    declarations: [LoginComponent, DashboardComponent],
+    imports: [RouterTestingModule.withRoutes([{ path: 'dashboard', component: DashboardComponent }])],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+})
       .compileComponents();
   });
 

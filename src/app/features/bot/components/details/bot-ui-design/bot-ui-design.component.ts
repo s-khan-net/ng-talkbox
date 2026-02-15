@@ -9,7 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-bot-ui-design',
   templateUrl: './bot-ui-design.component.html',
-  styleUrls: ['./bot-ui-design.component.scss']
+  styleUrls: ['./bot-ui-design.component.scss'],
+  standalone: false
 })
 export class BotUiDesignComponent implements OnInit, OnChanges, OnDestroy {
   @Input() public bot!: IBot;

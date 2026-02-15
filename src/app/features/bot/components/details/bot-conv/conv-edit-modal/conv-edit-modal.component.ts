@@ -6,7 +6,8 @@ import { convType, IConv } from 'src/app/models/bot.model';
 @Component({
   selector: 'app-conv-edit-modal',
   templateUrl: './conv-edit-modal.component.html',
-  styleUrls: ['./conv-edit-modal.component.scss']
+  styleUrls: ['./conv-edit-modal.component.scss'],
+  standalone: false
 })
 export class ConvEditModalComponent implements OnInit {
 

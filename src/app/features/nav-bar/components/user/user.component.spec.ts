@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { UserService } from '../../../../shared/services/user.service';
@@ -7,6 +7,7 @@ import { UserBuilder } from '../../../../../../Test/data/user/user-builder.model
 import { BehaviorSubject } from 'rxjs';
 import { AuthenticationService } from '../../../../core/services/authentication/authentication.service';
 import { By } from '@angular/platform-browser';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('UserComponent', () => {
   let component: UserComponent;
@@ -16,12 +17,10 @@ describe('UserComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        HttpClientTestingModule
-      ],
-      declarations: [UserComponent]
-    })
+    declarations: [UserComponent],
+    imports: [RouterTestingModule],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+})
       .compileComponents();
   });
 

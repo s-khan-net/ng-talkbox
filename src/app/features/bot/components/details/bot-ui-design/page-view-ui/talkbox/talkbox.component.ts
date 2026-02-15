@@ -5,7 +5,8 @@ import { getLightColorFromBg } from 'src/app/shared/contants';
 @Component({
   selector: 'app-talkbox',
   templateUrl: './talkbox.component.html',
-  styleUrls: ['./talkbox.component.scss']
+  styleUrls: ['./talkbox.component.scss'],
+  standalone: false
 })
 export class TalkboxComponent implements OnInit, OnChanges {
 

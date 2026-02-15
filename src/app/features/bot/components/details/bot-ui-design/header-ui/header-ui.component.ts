@@ -4,7 +4,8 @@ import { IBot } from 'src/app/models/bot.model';
 @Component({
   selector: 'app-header-ui',
   templateUrl: './header-ui.component.html',
-  styleUrls: ['./header-ui.component.scss']
+  styleUrls: ['./header-ui.component.scss'],
+  standalone: false
 })
 export class HeaderUiComponent implements OnInit, OnChanges {
 

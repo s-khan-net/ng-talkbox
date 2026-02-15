@@ -6,7 +6,8 @@ import { IBot } from 'src/app/models/bot.model';
 @Component({
   selector: 'app-bot-card',
   templateUrl: './bot-card.component.html',
-  styleUrls: ['./bot-card.component.scss']
+  styleUrls: ['./bot-card.component.scss'],
+  standalone: false
 })
 export class BotCardComponent implements OnInit, OnChanges {
   @Input() bot?: IBot;

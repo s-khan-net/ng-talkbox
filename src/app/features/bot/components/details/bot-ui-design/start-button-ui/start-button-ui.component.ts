@@ -4,7 +4,8 @@ import { IBot, IStartUpParams, IThemeColors } from 'src/app/models/bot.model';
 @Component({
   selector: 'app-start-button-ui',
   templateUrl: './start-button-ui.component.html',
-  styleUrls: ['./start-button-ui.component.scss']
+  styleUrls: ['./start-button-ui.component.scss'],
+  standalone: false
 })
 export class StartButtonUiComponent implements OnInit {
 

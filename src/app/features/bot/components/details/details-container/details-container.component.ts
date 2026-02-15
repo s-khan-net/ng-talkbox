@@ -6,7 +6,8 @@ import { BotPages } from '../../sidebar/bot-pages.config';
 @Component({
   selector: 'app-details-container',
   templateUrl: './details-container.component.html',
-  styleUrls: ['./details-container.component.scss']
+  styleUrls: ['./details-container.component.scss'],
+  standalone: false
 })
 export class DetailsContainerComponent implements OnInit, OnChanges {
 

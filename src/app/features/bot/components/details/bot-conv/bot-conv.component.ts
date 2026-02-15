@@ -9,7 +9,8 @@ import { ConfirmModalComponent } from 'src/app/shared/components/confirm-modal/c
 @Component({
   selector: 'app-bot-conv',
   templateUrl: './bot-conv.component.html',
-  styleUrls: ['./bot-conv.component.scss']
+  styleUrls: ['./bot-conv.component.scss'],
+  standalone: false
 })
 export class BotConvComponent implements OnInit {
 

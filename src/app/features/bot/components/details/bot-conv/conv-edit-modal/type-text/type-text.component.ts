@@ -5,7 +5,8 @@ import { DEFAULT_RESPONSEVALIDATION } from 'src/app/shared/contants';
 @Component({
   selector: 'app-type-text',
   templateUrl: './type-text.component.html',
-  styleUrls: ['./type-text.component.scss']
+  styleUrls: ['./type-text.component.scss'],
+  standalone: false
 })
 export class TypeTextComponent implements OnInit {
 

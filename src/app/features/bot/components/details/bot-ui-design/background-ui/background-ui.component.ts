@@ -4,7 +4,8 @@ import { IBot } from 'src/app/models/bot.model';
 @Component({
   selector: 'app-background-ui',
   templateUrl: './background-ui.component.html',
-  styleUrls: ['./background-ui.component.scss']
+  styleUrls: ['./background-ui.component.scss'],
+  standalone: false
 })
 export class BackgroundUiComponent implements OnInit {
 

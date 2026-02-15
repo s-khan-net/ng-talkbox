@@ -4,7 +4,8 @@ import { ToggleMenuBackgroundColour } from './toggle-button-background-colour.en
 @Component({
   selector: 'app-toggle-button',
   templateUrl: './toggle-button.component.html',
-  styleUrls: ['./toggle-button.component.scss']
+  styleUrls: ['./toggle-button.component.scss'],
+  standalone: false
 })
 export class ToggleButtonComponent implements OnInit {
   @Input() public checked: boolean = false;

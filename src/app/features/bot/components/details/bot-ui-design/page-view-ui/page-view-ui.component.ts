@@ -4,7 +4,8 @@ import { IBot } from 'src/app/models/bot.model';
 @Component({
   selector: 'app-page-view-ui',
   templateUrl: './page-view-ui.component.html',
-  styleUrls: ['./page-view-ui.component.scss']
+  styleUrls: ['./page-view-ui.component.scss'],
+  standalone: false
 })
 export class PageViewUiComponent implements OnInit, OnChanges {
 

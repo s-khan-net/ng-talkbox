@@ -8,7 +8,8 @@ import { AuthenticationService } from '../../../../core/services/authentication/
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  styleUrls: ['./user.component.scss'],
+  standalone: false
 })
 export class UserComponent implements OnInit {
   showUserNav: boolean = false;

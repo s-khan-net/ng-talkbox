@@ -7,7 +7,8 @@ import { IBot } from 'src/app/models/bot.model';
 @Component({
   selector: 'app-bot-preview',
   templateUrl: './bot-preview.component.html',
-  styleUrls: ['./bot-preview.component.scss']
+  styleUrls: ['./bot-preview.component.scss'],
+  standalone: false
 })
 export class BotPreviewComponent implements OnChanges {
 

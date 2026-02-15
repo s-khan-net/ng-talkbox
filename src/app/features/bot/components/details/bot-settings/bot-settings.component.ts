@@ -5,7 +5,8 @@ import * as _ from "lodash";
 @Component({
   selector: 'app-bot-settings',
   templateUrl: './bot-settings.component.html',
-  styleUrls: ['./bot-settings.component.scss']
+  styleUrls: ['./bot-settings.component.scss'],
+  standalone: false
 })
 export class BotSettingsComponent implements OnInit {
 

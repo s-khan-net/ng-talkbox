@@ -4,7 +4,8 @@ import * as _ from 'lodash';
 @Component({
   selector: 'app-type-option',
   templateUrl: './type-option.component.html',
-  styleUrls: ['./type-option.component.scss']
+  styleUrls: ['./type-option.component.scss'],
+  standalone: false
 })
 export class TypeOptionComponent implements OnInit {
 
