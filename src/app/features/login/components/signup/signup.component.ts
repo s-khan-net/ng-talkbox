@@ -29,12 +29,12 @@ export class SignupComponent {
    *
    */
   constructor(private _authenticationService: AuthenticationService, private _router: Router) {
-    
+
   }
   public onSubmit(): void {
     const { name, email, password } = this.signupForm.value;
     console.log('Signup form submitted with values:', { name, email, password });
-    let userObj ={ "name": `${name}`, "email": `${email}`, "password": `${password}` }
+    let userObj = { "name": `${name}`, "email": `${email}`, "password": `${password}` }
     //call signup method in auth service
     this._authenticationService.signup(userObj).subscribe({
       next: (user: IUser) => {

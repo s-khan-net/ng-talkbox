@@ -1,28 +1,46 @@
 <div class="name-panel">
-    <!-- <input type="text" [(ngModel)]="bot.name" maxlength="12" required [ngClass]="{'name-empty-error':bot.name?.length == 0}" /> -->
-    <span (click)=save() class="btn btn-info" style="float: right;" *ngIf="component?.name === 'design' || component?.name === 'conversation' || component?.name === 'settings' || component?.name === 'details'" >publish</span>
+  <!-- <input type="text" [(ngModel)]="bot.name" maxlength="12" required [ngClass]="{'name-empty-error':bot.name?.length == 0}" /> -->
+  @if (component?.name === 'design' || component?.name === 'conversation' || component?.name === 'settings' || component?.name === 'details') {
+    <span (click)=save() class="btn btn-info" style="float: right;" >publish</span>
+  }
 </div>
-<div *ngIf="component === undefined" class="details-container">
+@if (component === undefined) {
+  <div class="details-container">
     BLANK
-</div>
-<div *ngIf="component?.name === 'details'" class="details-container">
+  </div>
+}
+@if (component?.name === 'details') {
+  <div class="details-container">
     <app-bot-general [bot]="bot"></app-bot-general>
-</div>
-<div *ngIf="component?.name === 'design'" class="details-container">
+  </div>
+}
+@if (component?.name === 'design') {
+  <div class="details-container">
     <app-bot-ui-design [bot]="bot"></app-bot-ui-design>
-</div>
-<div *ngIf="component?.name === 'conversation'" class="details-container">
+  </div>
+}
+@if (component?.name === 'conversation') {
+  <div class="details-container">
     <app-bot-conv [bot]="bot"></app-bot-conv>
-</div>
-<div *ngIf="component?.name === 'share'" class="details-container">
+  </div>
+}
+@if (component?.name === 'share') {
+  <div class="details-container">
     SHARE
-</div>
-<div *ngIf="component?.name === 'settings'" class="details-container">
+  </div>
+}
+@if (component?.name === 'settings') {
+  <div class="details-container">
     <app-bot-settings [bot]="bot" ></app-bot-settings>
-</div>
-<div *ngIf="component?.name === 'help'" class="details-container">
+  </div>
+}
+@if (component?.name === 'help') {
+  <div class="details-container">
     HELP
-</div>
-<div *ngIf="(bot && component) && (component?.name === 'design' || component?.name === 'conversation')" class="preview">
-   <app-bot-preview [bot]="bot"></app-bot-preview>
-</div>
+  </div>
+}
+@if ((bot && component) && (component?.name === 'design' || component?.name === 'conversation')) {
+  <div class="preview">
+    <app-bot-preview [bot]="bot"></app-bot-preview>
+  </div>
+}

@@ -1,22 +1,22 @@
 <div class="modal-header">
-    <div class="modal-title">Editing....</div>
+  <div class="modal-title">Editing....</div>
 </div>
 <div class="modal-body">
-    <div class="row">
-        <div class="col-md-12">
-            <app-text-editor [text]="fromParent.text" (updateText)="onUpdatetext($event)"></app-text-editor>
-        </div>
+  <div class="row">
+    <div class="col-md-12">
+      <app-text-editor [text]="fromParent.text" (updateText)="onUpdatetext($event)"></app-text-editor>
     </div>
-    <ng-container *ngIf="fromParent.type == 'text'">
-        <app-type-text [fromParent]="fromParent" [conv]="conv"></app-type-text>
-    </ng-container>
-    <ng-container *ngIf="fromParent.type == 'option'">
-        <app-type-option [fromParent]="fromParent" [conv]="conv" [parentOptions]="parentOptions" [optionBoxShadow]="optionBoxShadow" [themePrimaryColor]="themePrimaryColor"></app-type-option>
-    </ng-container>
+  </div>
+  @if (fromParent.type == 'text') {
+    <app-type-text [fromParent]="fromParent" [conv]="conv"></app-type-text>
+  }
+  @if (fromParent.type == 'option') {
+    <app-type-option [fromParent]="fromParent" [conv]="conv" [parentOptions]="parentOptions" [optionBoxShadow]="optionBoxShadow" [themePrimaryColor]="themePrimaryColor"></app-type-option>
+  }
 </div>
 <div class="modal-footer">
-    <div class="btn-group" role="group">
-        <button type="button" class="btn btn-outline-primary" ngbAutofocus (click)="saveOptions()">Save</button>
-        <button type="button" class="btn btn-outline-primary" (click)="dismiss(true)">Cancel</button>
-    </div>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-outline-primary" ngbAutofocus (click)="saveOptions()">Save</button>
+    <button type="button" class="btn btn-outline-primary" (click)="dismiss(true)">Cancel</button>
+  </div>
 </div>

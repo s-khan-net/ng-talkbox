@@ -1,4 +1,6 @@
-<app-error [errorMessage]="'Error logging in'" *ngIf="loginError"></app-error>
+@if (loginError) {
+  <app-error [errorMessage]="'Error logging in'"></app-error>
+}
 <div class="container text-center">
   <div class="talkbox-card">
     <div class="form-group">
@@ -15,13 +17,13 @@
         <span class="bi bi-shield-lock"></span>
         <input [type]=inputPasswordType class="password-text-box" placeholder="password" [(ngModel)]="userPasswordModel"
           required>
-        <span [ngClass]="{'bi-eye':showPassword, 'bi-eye-slash':!showPassword}" (mousedown)="toggleShowPassword()"
+          <span [ngClass]="{'bi-eye':showPassword, 'bi-eye-slash':!showPassword}" (mousedown)="toggleShowPassword()"
           (mouseup)="toggleShowPassword()"></span>
-      </span>
-    </div>
-    <div class="form-group text-right">
-      <button class="btn btn-primary" id="btnLogin"  [disabled]=!loginBtnEnabled
+        </span>
+      </div>
+      <div class="form-group text-right">
+        <button class="btn btn-primary" id="btnLogin"  [disabled]=!loginBtnEnabled
         (click)="login()">Login</button>
+      </div>
     </div>
   </div>
-</div>

@@ -54,4 +54,23 @@ export class AuthenticationService {
   public logout() {
     this._authTokenService.removeJwtToken();
   }
+
+  public signup(userObj: any): Observable<IUser> {
+    let subject = new Subject<IUser>();
+    this._http.post<IUser>(`${this.baseUrl}/${this.usersApiPostfix}/signup`, userObj, { observe: 'response' })
+      .subscribe
+      ((response: any) => {
+        const token = response.headers.get(APP_CONST.ACCESS_TOKEN).split(' ')[1];
+        if (!token) {
+          subject.next(undefined)
+          subject.error('No token recieved!')
+        } 
+        else {
+          console.log(token)  
+        }
+      }, (err: any) => {
+        subject.error(err);
+      });
+    return subject.asObservable();
+  }
 }

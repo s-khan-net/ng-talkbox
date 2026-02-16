@@ -1,28 +1,36 @@
 <div class="preview-tab-button" (click)="togglePreview()">preview</div>
 <div class="container" style="padding-left:0px">
-    <div class="page" [hidden]="previewToggle">
-        <div class="col-md-12" style="padding: 0px;">
-            <div class="preview-button"><button (click)="preview()"><i class="bi bi-lightning-charge"></i></button>
-            </div>
-            <iframe style="border-style:none;" id="iframe" #iframe height="520px" width="432px" [srcdoc]="html">
-            </iframe>
-            <div class="bot-icon">
-                <div *ngIf="bot.startUpParams?.startIconShadow?.required"
-                    [style.height.px]="bot.startUpParams?.startIconSize?.height"
-                    [style.width.px]="bot.startUpParams?.startIconSize?.width"
-                    [style.backgroundColor]="bot.startUpParams?.startIconBackground"
-                    [style.borderRadius]="startButtonBorder"
-                    [style.boxShadow]="bot.startUpParams?.startIconShadow?.style" style="margin: 0 auto">
-                    <div id="start-button-text" *ngIf="startText.length > 0"><span>{{startText}}</span></div>
-                </div>
-                <div *ngIf="!bot.startUpParams?.startIconShadow?.required"
-                    [style.height.px]="bot.startUpParams?.startIconSize?.height"
-                    [style.width.px]="bot.startUpParams?.startIconSize?.width"
-                    [style.backgroundColor]="bot.startUpParams?.startIconBackground"
-                    [style.borderRadius]="startButtonBorder" style="margin: 0 auto">
-                    <div id="start-button-text" *ngIf="startText.length > 0"><span>{{startText}}</span></div>
-                </div>
-            </div>
-        </div>
+  <div class="page" [hidden]="previewToggle">
+    <div class="col-md-12" style="padding: 0px;">
+      <div class="preview-button"><button (click)="preview()"><i class="bi bi-lightning-charge"></i></button>
     </div>
+    <iframe style="border-style:none;" id="iframe" #iframe height="520px" width="432px" [srcdoc]="html">
+    </iframe>
+    <div class="bot-icon">
+      @if (bot.startUpParams?.startIconShadow?.required) {
+        <div
+          [style.height.px]="bot.startUpParams?.startIconSize?.height"
+          [style.width.px]="bot.startUpParams?.startIconSize?.width"
+          [style.backgroundColor]="bot.startUpParams?.startIconBackground"
+          [style.borderRadius]="startButtonBorder"
+          [style.boxShadow]="bot.startUpParams?.startIconShadow?.style" style="margin: 0 auto">
+          @if (startText.length > 0) {
+            <div id="start-button-text"><span>{{startText}}</span></div>
+          }
+        </div>
+      }
+      @if (!bot.startUpParams?.startIconShadow?.required) {
+        <div
+          [style.height.px]="bot.startUpParams?.startIconSize?.height"
+          [style.width.px]="bot.startUpParams?.startIconSize?.width"
+          [style.backgroundColor]="bot.startUpParams?.startIconBackground"
+          [style.borderRadius]="startButtonBorder" style="margin: 0 auto">
+          @if (startText.length > 0) {
+            <div id="start-button-text"><span>{{startText}}</span></div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>
 </div>

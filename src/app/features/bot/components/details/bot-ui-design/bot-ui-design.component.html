@@ -1,61 +1,66 @@
-<ng-template [ngIf]="loadingError$">
-    <div>
-        <div *ngIf="loadingError$ | async; else loading">
-            <div>
-                <app-error [errorMessage]="errorMsg"></app-error>
-            </div>
+@if (loadingError$) {
+  <div>
+    @if (loadingError$ | async) {
+      <div>
+        <div>
+          <app-error [errorMessage]="errorMsg"></app-error>
         </div>
-        <ng-template #loading>
-            <div>
-                <app-loader [loaderMessage]="loadingMsg" [fullScreen]="fullScreen" [showLoader]="showLoader">
-                </app-loader>
-            </div>
-        </ng-template>
-    </div>
-</ng-template>
+      </div>
+    } @else {
+      <div>
+        <app-loader [loaderMessage]="loadingMsg" [fullScreen]="fullScreen" [showLoader]="showLoader">
+        </app-loader>
+      </div>
+    }
+  </div>
+}
 <div class="row">
-    <div class="col-md-7">
-        <div class="row">
-            <div class="col-md-12 ui-section-header">
-                Color Schemes
-            </div>
-        </div>
-        <div class="row" style="min-height: 64px;">
-            <div class="col-xs-2 " *ngFor="let color of colorSchemes$ | async" (click)="setColorScheme(color)">
-                <div class="color-name">{{color.name}}</div>
-                <div class="color-block" [style.backgroundColor]="color.primaryColor">
-                    <i *ngIf="bot.themeColors?.themePrimaryColor == color.primaryColor" class="bi bi-check"></i>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 ui-section-header">
-                Start button
-            </div>
-        </div>
-        <div class="row">
-            <app-start-button-ui [bot]="bot"></app-start-button-ui>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12 ui-section-header">
-                Background
-            </div>
-        </div>
-        <div class="row">
-            <app-background-ui [bot]="bot"></app-background-ui>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12 ui-section-header">
-                Header
-            </div>
-        </div>
-        <div class="row">
-            <app-header-ui [bot]="bot"></app-header-ui>
-        </div>
+  <div class="col-md-7">
+    <div class="row">
+      <div class="col-md-12 ui-section-header">
+        Color Schemes
+      </div>
     </div>
-    <!-- <div class="preview">
-        <app-page-view-ui [bot]="bot"></app-page-view-ui>
-    </div> -->
+    <div class="row" style="min-height: 64px;">
+      @for (color of colorSchemes$ | async; track color) {
+        <div class="col-xs-2 " (click)="setColorScheme(color)">
+          <div class="color-name">{{color.name}}</div>
+          <div class="color-block" [style.backgroundColor]="color.primaryColor">
+            @if (bot.themeColors?.themePrimaryColor == color.primaryColor) {
+              <i class="bi bi-check"></i>
+            }
+          </div>
+        </div>
+      }
+    </div>
+    <div class="row">
+      <div class="col-md-12 ui-section-header">
+        Start button
+      </div>
+    </div>
+    <div class="row">
+      <app-start-button-ui [bot]="bot"></app-start-button-ui>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 ui-section-header">
+        Background
+      </div>
+    </div>
+    <div class="row">
+      <app-background-ui [bot]="bot"></app-background-ui>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 ui-section-header">
+        Header
+      </div>
+    </div>
+    <div class="row">
+      <app-header-ui [bot]="bot"></app-header-ui>
+    </div>
+  </div>
+  <!-- <div class="preview">
+  <app-page-view-ui [bot]="bot"></app-page-view-ui>
+</div> -->
 </div>

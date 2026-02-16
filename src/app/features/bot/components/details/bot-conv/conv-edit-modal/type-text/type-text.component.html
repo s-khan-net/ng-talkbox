@@ -1,106 +1,122 @@
 <div class="row">
-    <div class="offset-md-1 col-md-11 left-padding-0">
-        <div class="conv-box">
-            <div class="conv-item">
-                <div>
-                    <div class="row linked-question" style="border:none">
-                        <div class="col-md-5 col-sm-3 text-right">
-                            <label class="checkbox-container" style="float:right">
-                                <input type="checkbox" [(ngModel)]="fromParent.waitForReply" (ngModelChange)="chkChange($event)">
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-                        <div class="col-md-6 col-sm-8">
-                            Accept a reply on this question
-                        </div>
-                        <div class="col-md-1 col-sm-1">
-                        </div>
-                    </div>
-                    <div class="row linked-question" style="border:none" *ngIf="fromParent.waitForReply">
-                        <div class="col-md-3 col-sm-2 text-right">
-                            Get a :
-                        </div>
-                        <div class="col-md-3 col-sm-4" style="margin-left: -15px;">
-                            <select [(ngModel)]="fromParent.responseValidation">
-                                <option value="text">TEXT</option>
-                                <option value="number">NUMBER</option>
-                                <option value="email">EMAIL</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6 col-sm-6">response for this question</div>
-                    </div>
-                </div>
+  <div class="offset-md-1 col-md-11 left-padding-0">
+    <div class="conv-box">
+      <div class="conv-item">
+        <div>
+          <div class="row linked-question" style="border:none">
+            <div class="col-md-5 col-sm-3 text-right">
+              <label class="checkbox-container" style="float:right">
+                <input type="checkbox" [(ngModel)]="fromParent.waitForReply" (ngModelChange)="chkChange($event)">
+                <span class="checkmark"></span>
+              </label>
             </div>
+            <div class="col-md-6 col-sm-8">
+              Accept a reply on this question
+            </div>
+            <div class="col-md-1 col-sm-1">
+            </div>
+          </div>
+          @if (fromParent.waitForReply) {
+            <div class="row linked-question" style="border:none">
+              <div class="col-md-3 col-sm-2 text-right">
+                Get a :
+              </div>
+              <div class="col-md-3 col-sm-4" style="margin-left: -15px;">
+                <select [(ngModel)]="fromParent.responseValidation">
+                  <option value="text">TEXT</option>
+                  <option value="number">NUMBER</option>
+                  <option value="email">EMAIL</option>
+                </select>
+              </div>
+              <div class="col-md-6 col-sm-6">response for this question</div>
+            </div>
+          }
         </div>
+      </div>
     </div>
-    <div class="offset-md-1 col-md-11 left-padding-0">
-        <div class="conv-box" *ngIf="fromParent.nextQuestion">
-            <div class="conv-item" *ngFor="let item of (conv | convDisplay: fromParent.nextQuestion)">
-                <div class="linked-question">
-                    <div class="row">
-                        <div class="col-md-5 col-sm-3 text-right">Next question:</div>
-                        <div class="col-md-6 col-sm-5">
-                            <select id="{{fromParent.id}}" [(ngModel)]="fromParent.nextQuestion"
-                                (change)="addNextQuestion(fromParent)">
-                                <ng-container *ngFor="let question of conv">
-                                    <option *ngIf="question.id!='66666-99999-00000' && question.id!= fromParent.id"
-                                        id="{{question.id}}" value="{{question.id}}"
-                                        [selected]="fromParent.nextQuestion == question.id">
-                                        {{question.text}}
-                                    </option>
-                                </ng-container>
-                            </select>
-                        </div>
-                        <div class="col-md-1 col-sm-4">
-                            <span class="bi bi-x btn-round" title="Remove next question" (click)="removeNext()"></span>
-                        </div>
-                    </div>
-                    <span class="bi bi-gear-wide-connected btn-round" title="Edit"
-                        (click)="linkedQuestionEdit(fromParent.nextQuestion)"></span>
+  </div>
+  <div class="offset-md-1 col-md-11 left-padding-0">
+    @if (fromParent.nextQuestion) {
+      <div class="conv-box">
+        @for (item of (conv | convDisplay: fromParent.nextQuestion); track item) {
+          <div class="conv-item">
+            <div class="linked-question">
+              <div class="row">
+                <div class="col-md-5 col-sm-3 text-right">Next question:</div>
+                <div class="col-md-6 col-sm-5">
+                  <select id="{{fromParent.id}}" [(ngModel)]="fromParent.nextQuestion"
+                    (change)="addNextQuestion(fromParent)">
+                    @for (question of conv; track question) {
+                      @if (question.id!='66666-99999-00000' && question.id!= fromParent.id) {
+                        <option
+                          id="{{question.id}}" value="{{question.id}}"
+                          [selected]="fromParent.nextQuestion == question.id">
+                          {{question.text}}
+                        </option>
+                      }
+                    }
+                  </select>
                 </div>
-                <table style="width:84%">
-                    <tr>
-                        <td rowspan="2" class="item-abbr-td">
-                            <div class="btn-round item-abbr" title="{{(item | convTypeAbbr).desc}}">
-                                {{(item | convTypeAbbr).abbr}}
-                            </div>
-                        </td>
-                        <td class="text-center">
-                            {{item.text}}
-                        </td>
-                    </tr>
-                    <tr *ngIf="item.options">
-                        <td style="text-align:center">
-                            <div class="option-button" *ngFor="let option of item.options">
-                                {{option.text}}</div>
-                        </td>
-                    </tr>
-                </table>
+                <div class="col-md-1 col-sm-4">
+                  <span class="bi bi-x btn-round" title="Remove next question" (click)="removeNext()"></span>
+                </div>
+              </div>
+              <span class="bi bi-gear-wide-connected btn-round" title="Edit"
+              (click)="linkedQuestionEdit(fromParent.nextQuestion)"></span>
             </div>
+            <table style="width:84%">
+              <tr>
+                <td rowspan="2" class="item-abbr-td">
+                  <div class="btn-round item-abbr" title="{{(item | convTypeAbbr).desc}}">
+                    {{(item | convTypeAbbr).abbr}}
+                  </div>
+                </td>
+                <td class="text-center">
+                  {{item.text}}
+                </td>
+              </tr>
+              @if (item.options) {
+                <tr>
+                  <td style="text-align:center">
+                    @for (option of item.options; track option) {
+                      <div class="option-button">
+                      {{option.text}}</div>
+                    }
+                  </td>
+                </tr>
+              }
+            </table>
+          </div>
+        }
+      </div>
+    }
+    @if (!fromParent.nextQuestion) {
+      <div class="row linked-question" style="margin-right:0px">
+        <div class="row">
+          <div class="col-md-11">
+            A next question is not configured for this question, therefore, the next one in the list will
+            be
+            considered as the next question.
+          </div>
         </div>
-        <div class="row linked-question" style="margin-right:0px" *ngIf="!fromParent.nextQuestion">
-            <div class="row">
-                <div class="col-md-11">
-                    A next question is not configured for this question, therefore, the next one in the list will
-                    be
-                    considered as the next question.
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3">select the question:</div>
-                <div class="col-md-8">
-                    <select id="{{fromParent.id}}" [(ngModel)]="fromParent.nextQuestion"
-                        (change)="addNextQuestion(fromParent)">
-                        <ng-container *ngFor="let question of conv">
-                            <option *ngIf="question.id!='66666-99999-00000' && question.id!= fromParent.id"
-                                id="{{question.id}}" value="{{question.id}}"
-                                [selected]="fromParent.nextQuestion == question.id">
-                                {{question.text}}
-                            </option>
-                        </ng-container>
-                    </select>
-                </div>
-            </div>
+        <div class="row">
+          <div class="col-md-3">select the question:</div>
+          <div class="col-md-8">
+            <select id="{{fromParent.id}}" [(ngModel)]="fromParent.nextQuestion"
+              (change)="addNextQuestion(fromParent)">
+              @for (question of conv; track question) {
+                @if (question.id!='66666-99999-00000' && question.id!= fromParent.id) {
+                  <option
+                    id="{{question.id}}" value="{{question.id}}"
+                    [selected]="fromParent.nextQuestion == question.id">
+                    {{question.text}}
+                  </option>
+                }
+              }
+            </select>
+          </div>
         </div>
-    </div>
+      </div>
+    }
+  </div>
 </div>

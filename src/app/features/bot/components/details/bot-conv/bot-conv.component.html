@@ -1,143 +1,165 @@
 <div class="row">
-    <div class="col-md-2 col-lg-2">
-        <div class="row">
-            <div class="col-sm-12 conv-type" *ngFor="let type of convTypes" title="{{type.desc}}"
-                (click)="addConvItem(type)">
-                {{type.abbr}} - {{type.name}} <span></span>
-            </div>
+  <div class="col-md-2 col-lg-2">
+    <div class="row">
+      @for (type of convTypes; track type) {
+        <div class="col-sm-12 conv-type" title="{{type.desc}}"
+          (click)="addConvItem(type)">
+          {{type.abbr}} - {{type.name}} <span></span>
         </div>
+      }
     </div>
-    <div class="col-md-7 col-lg-6" style="padding-left:0px !important">
-        <div class="conv-box">
-            <ng-container *ngFor="let item of conv">
-                <div class="conv-item" [ngStyle]="{'border': linkedQuestionHover == item.id ? '1px solid #1e65e5' : ''}"
-                    [ngStyle]="{'border': nextQuestionHover == item.id ? '1px solid #4d4d4d' : ''}">
-                    <div class="edit-button-container">
-                        <span class="bi bi-gear-wide-connected btn-round" title="Edit"
-                            (click)="editConvItem(item)"></span>
-                        <span class="bi bi-trash btn-round" title="Delete" (click)="deleteConvItem(item)"></span>
+  </div>
+  <div class="col-md-7 col-lg-6" style="padding-left:0px !important">
+    <div class="conv-box">
+      @for (item of conv; track item) {
+        <div class="conv-item" [ngStyle]="{'border': linkedQuestionHover == item.id ? '1px solid #1e65e5' : ''}"
+          [ngStyle]="{'border': nextQuestionHover == item.id ? '1px solid #4d4d4d' : ''}">
+          <div class="edit-button-container">
+            <span class="bi bi-gear-wide-connected btn-round" title="Edit"
+            (click)="editConvItem(item)"></span>
+            <span class="bi bi-trash btn-round" title="Delete" (click)="deleteConvItem(item)"></span>
+          </div>
+          @if (item.type == 'option') {
+            <div>
+              <table style="width:98%">
+                <tbody>
+                  <tr>
+                    <td rowspan="3" class="item-abbr-td">
+                      <div class="item-text">id: {{item.id}}</div>
+                      <div class="btn-round item-abbr" title="{{(item | convTypeAbbr).desc}}">{{(item
+                      | convTypeAbbr).abbr}}</div>
+                    </td>
+                    <td class="text-center">{{item.text}}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="option-button-container">
+                        @for (option of item.options; track option) {
+                          <div (mouseover)="hoverLinkedQuestion(option.linkedQuestion)"
+                            (mouseout)="hoverOutLinkedQuestion()">
+                            <div class="option-button" [style.boxShadow]="optionBoxShadow"
+                              [style.backgroundColor]="themePrimaryColor"
+                            [style.textShadow]="">{{option.text}}</div>
+                            @if (option.linkedQuestion) {
+                              <div
+                                title="linked to: {{option.linkedQuestion}}"
+                                class="linked-question"><i class="bi bi-link-45deg"></i>:
+                              {{option.linkedQuestion}}</div>
+                            }
+                            @if (!option.linkedQuestion) {
+                              <div
+                                title="option is not linked to a question"
+                                class="linked-question">
+                                <i class="bi bi-link-45deg"></i>:<i class="bi bi-x-lg"
+                              style="color:red"></i>
+                            </div>
+                          }
+                        </div>
+                      }
                     </div>
-                    <div *ngIf="item.type == 'option'">
-                        <table style="width:98%">
-                            <tbody>
-                                <tr>
-                                    <td rowspan="3" class="item-abbr-td">
-                                        <div class="item-text">id: {{item.id}}</div>
-                                        <div class="btn-round item-abbr" title="{{(item | convTypeAbbr).desc}}">{{(item
-                                            | convTypeAbbr).abbr}}</div>
-                                    </td>
-                                    <td class="text-center">{{item.text}}</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="option-button-container">
-                                            <ng-container *ngFor="let option of item.options">
-                                                <div (mouseover)="hoverLinkedQuestion(option.linkedQuestion)"
-                                                    (mouseout)="hoverOutLinkedQuestion()">
-                                                    <div class="option-button" [style.boxShadow]="optionBoxShadow"
-                                                        [style.backgroundColor]="themePrimaryColor"
-                                                        [style.textShadow]="">{{option.text}}</div>
-                                                    <div *ngIf="option.linkedQuestion"
-                                                        title="linked to: {{option.linkedQuestion}}"
-                                                        class="linked-question"><i class="bi bi-link-45deg"></i>:
-                                                        {{option.linkedQuestion}}</div>
-                                                    <div *ngIf="!option.linkedQuestion"
-                                                        title="option is not linked to a question"
-                                                        class="linked-question">
-                                                        <i class="bi bi-link-45deg"></i>:<i class="bi bi-x-lg"
-                                                            style="color:red"></i>
-                                                    </div>
-                                                </div>
-                                            </ng-container>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        }
+        @if (item.type == 'text') {
+          <div>
+            <table style="width:98%">
+              <tr>
+                <td rowspan="2" class="item-abbr-td">
+                  <div class="item-text">id: {{item.id}}</div>
+                  <div class="btn-round item-abbr" title="{{(item | convTypeAbbr).desc}}">{{(item |
+                  convTypeAbbr).abbr}}</div>
+                </td>
+                <td colspan="2">
+                  <div class="text-center">{{item.text}}</div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="justify-content:center; display:flex;">
+                    @if ( item.nextQuestion) {
+                      <div title="Next question: {{item.nextQuestion}}"
+                        class="linked-question" (mouseover)=" hoverNextQuestion(item.nextQuestion)"
+                        (mouseout)="hoverOutNextQuestion()"><i class="bi bi-arrow-down"></i>:
+                        {{item.nextQuestion}}
+                      </div>
+                    }
+                    @if (!item.nextQuestion) {
+                      <div
+                        title="There is no next question configured - therefore the one configured below it will be shown"
+                        class="linked-question">
+                        <i class="bi bi-arrow-down"></i>:<i class="bi bi-x-lg"
+                      style="color:red"></i>
                     </div>
-                    <div *ngIf="item.type == 'text'">
-                        <table style="width:98%">
-                            <tr>
-                                <td rowspan="2" class="item-abbr-td">
-                                    <div class="item-text">id: {{item.id}}</div>
-                                    <div class="btn-round item-abbr" title="{{(item | convTypeAbbr).desc}}">{{(item |
-                                        convTypeAbbr).abbr}}</div>
-                                </td>
-                                <td colspan="2">
-                                    <div class="text-center">{{item.text}}</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div style="justify-content:center; display:flex;">
-                                        <div *ngIf=" item.nextQuestion" title="Next question: {{item.nextQuestion}}"
-                                            class="linked-question" (mouseover)=" hoverNextQuestion(item.nextQuestion)"
-                                            (mouseout)="hoverOutNextQuestion()"><i class="bi bi-arrow-down"></i>:
-                                            {{item.nextQuestion}}
-                                        </div>
-                                        <div *ngIf="!item.nextQuestion"
-                                            title="There is no next question configured - therefore the one configured below it will be shown"
-                                            class="linked-question">
-                                            <i class="bi bi-arrow-down"></i>:<i class="bi bi-x-lg"
-                                                style="color:red"></i>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td *ngIf="item.waitForReply">
-                                    <div style="font-size:small">Accept a {{item.responseValidation}} input from the
-                                        user</div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div *ngIf="item.type == 'multi'">
-                        <table style="width:98%">
-                            <tbody>
-                                <tr>
-                                    <td rowspan="3" class="item-abbr-td">
-                                        <div class="item-text">id: {{item.id}}</div>
-                                        <div class="btn-round item-abbr" title="{{(item | convTypeAbbr).desc}}">{{(item
-                                            | convTypeAbbr).abbr}}</div>
-                                    </td>
-                                    <td class="text-center">{{item.text}}</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="option-button-container">
-                                            <ng-container *ngFor="let option of item.options">
-                                                <div>
-                                                    <div class="multi-btn" [style.boxShadow]="optionBoxShadow">
-                                                        <input type="checkbox" id="{{option.value}}" />
-                                                        <label style="margin-bottom: 0px;padding-left:3px">{{option.text}}</label>
-                                                        </div>
-                                                    <!-- <div *ngIf="option.linkedQuestion"
-                                                        title="linked to: {{option.linkedQuestion}}"
-                                                        class="linked-question"><i class="bi bi-link-45deg"></i>:
-                                                        {{option.linkedQuestion}}</div>
-                                                    <div *ngIf="!option.linkedQuestion"
-                                                        title="option is not linked to a question"
-                                                        class="linked-question">
-                                                        <i class="bi bi-link-45deg"></i>:<i class="bi bi-x-lg"
-                                                            style="color:red"></i>
-                                                    </div> -->
-                                                </div>
-                                            </ng-container>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div *ngIf="item.type == 'rating'">
-                        <div class="btn-round item-abbr" title="options">R</div>
-                        <div class="item-text">{{item.text}}</div>
-                        <div class="option-button" *ngFor="let option of item.options">{{option}}</div>
-                    </div>
+                  }
                 </div>
-            </ng-container>
+              </td>
+              @if (item.waitForReply) {
+                <td>
+                  <div style="font-size:small">Accept a {{item.responseValidation}} input from the
+                  user</div>
+                </td>
+              }
+            </tr>
+          </table>
         </div>
+      }
+      @if (item.type == 'multi') {
+        <div>
+          <table style="width:98%">
+            <tbody>
+              <tr>
+                <td rowspan="3" class="item-abbr-td">
+                  <div class="item-text">id: {{item.id}}</div>
+                  <div class="btn-round item-abbr" title="{{(item | convTypeAbbr).desc}}">{{(item
+                  | convTypeAbbr).abbr}}</div>
+                </td>
+                <td class="text-center">{{item.text}}</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="option-button-container">
+                    @for (option of item.options; track option) {
+                      <div>
+                        <div class="multi-btn" [style.boxShadow]="optionBoxShadow">
+                          <input type="checkbox" id="{{option.value}}" />
+                          <label style="margin-bottom: 0px;padding-left:3px">{{option.text}}</label>
+                        </div>
+                        <!-- <div *ngIf="option.linkedQuestion"
+                        title="linked to: {{option.linkedQuestion}}"
+                        class="linked-question"><i class="bi bi-link-45deg"></i>:
+                      {{option.linkedQuestion}}</div>
+                      <div *ngIf="!option.linkedQuestion"
+                        title="option is not linked to a question"
+                        class="linked-question">
+                        <i class="bi bi-link-45deg"></i>:<i class="bi bi-x-lg"
+                      style="color:red"></i>
+                    </div> -->
+                  </div>
+                }
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="col-md-4 col-lg-5">
+  }
+  @if (item.type == 'rating') {
+    <div>
+      <div class="btn-round item-abbr" title="options">R</div>
+      <div class="item-text">{{item.text}}</div>
+      @for (option of item.options; track option) {
+        <div class="option-button">{{option}}</div>
+      }
+    </div>
+  }
+</div>
+}
+</div>
+</div>
+<div class="col-md-4 col-lg-5">
 
-    </div>
+</div>
 </div>

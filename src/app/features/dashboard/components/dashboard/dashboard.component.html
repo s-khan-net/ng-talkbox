@@ -1,48 +1,55 @@
-<div class="create-btn-container" *ngIf="!showLoader && !error">
+@if (!showLoader && !error) {
+  <div class="create-btn-container">
     <button class="btn-light-blue" id="btnCreateBot" (click)="openModal(newBotContent)">Create new bot</button>
-</div>
+  </div>
+}
 <div class="bot-row row">
-    <div *ngFor="let bot of bots$ | async" class="col-md-4">
-        <app-bot-card [bot]=bot></app-bot-card>
+  @for (bot of bots$ | async; track bot) {
+    <div class="col-md-4">
+      <app-bot-card [bot]=bot></app-bot-card>
     </div>
+  }
 </div>
-<ng-template [ngIf]="loadingError$">
-    <div>
-        <div *ngIf="loadingError$ | async; else loading">
-            <div>
-                <app-error [errorMessage]="errorMsg"></app-error>
-            </div>
+@if (loadingError$) {
+  <div>
+    @if (loadingError$ | async) {
+      <div>
+        <div>
+          <app-error [errorMessage]="errorMsg"></app-error>
         </div>
-        <ng-template #loading>
-            <div>
-                <app-loader [loaderMessage]="loadingMsg" [fullScreen]="fullScreen" [showLoader]="showLoader">
-                </app-loader>
-            </div>
-        </ng-template>
-    </div>
-</ng-template>
+      </div>
+    } @else {
+      <div>
+        <app-loader [loaderMessage]="loadingMsg" [fullScreen]="fullScreen" [showLoader]="showLoader">
+        </app-loader>
+      </div>
+    }
+  </div>
+}
 
 <ng-template #newBotContent let-modal let-d="dismiss">
-    <div class="modal-header">
-        <h4 class="modal-title" id="create-bot-title">Create bot</h4>
-        <div class="btn-round" (click)="d()" aria-label="Close">
-            <i class="bi bi-x-circle"></i>
-        </div>
+  <div class="modal-header">
+    <h4 class="modal-title" id="create-bot-title">Create bot</h4>
+    <div class="btn-round" (click)="d()" aria-label="Close">
+      <i class="bi bi-x-circle"></i>
     </div>
-    <div class="modal-body">
-        <div class="row">
-            <div class="col-md-6">
-                <button class="btn-light-blue" name="btnCreateDefault" id="btnCreateDefault" ngbAutofocus (click)="modal.close(true)">
-                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
-                        *ngIf="creating"></span>
-                    Create using a default template
-                </button>
-            </div>
-            <div class="col-md-6">
-                <button class="btn-light-blue" name="btnCreateTemplate" id="btnCreateTemplate" (click)="modal.close(false)">Create using an
-                    existing
-                    template</button>
-            </div>
-        </div>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-6">
+        <button class="btn-light-blue" name="btnCreateDefault" id="btnCreateDefault" ngbAutofocus (click)="modal.close(true)">
+          @if (creating) {
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+            ></span>
+          }
+          Create using a default template
+        </button>
+      </div>
+      <div class="col-md-6">
+        <button class="btn-light-blue" name="btnCreateTemplate" id="btnCreateTemplate" (click)="modal.close(false)">Create using an
+          existing
+        template</button>
+      </div>
     </div>
+  </div>
 </ng-template>
