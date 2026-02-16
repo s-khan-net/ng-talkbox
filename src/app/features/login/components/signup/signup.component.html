@@ -1,0 +1,31 @@
+<app-error [errorMessage]="'Error logging in'" *ngIf="loginError"></app-error>
+<div class="container text-center">
+    <div class="talkbox-card">
+        <h2>Sign Up</h2>
+
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+
+            <div class="form-group">
+                <label for="firstName">Name</label>
+                <input type="text" id="firstName" formControlName="name" placeholder="Enter first name" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" formControlName="email" placeholder="Enter email" class="form-control" required>
+            </div>
+
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" formControlName="password" placeholder="Enter password" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>
+
+        <p class="login-link">
+            Already have an account? <a routerLink="/login">Log In</a>
+        </p>
+    </div>
+</div>
