@@ -7,19 +7,21 @@
   height: calc(100vh - 110px);
   background-color: $white;
 }
+
 .preview-tab-button {
   @include no-select;
   @include box-shadow;
   position: absolute;
   transform: rotate(90deg);
   top: 36px;
-  left: -64px;
+  left: -68px;
   background-color: $aliceblue-12;
   padding: 5px 16px 0px 16px;
   cursor: pointer;
   z-index: -1;
   letter-spacing: 2px;
 }
+
 .bot-icon {
   position: fixed;
   right: 85px;

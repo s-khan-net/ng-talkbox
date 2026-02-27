@@ -3,15 +3,28 @@
 </div>
 <div class="modal-body">
   <div class="row">
+    <div class="col-md-1">
+      <div class="btn-round item-abbr" title="{{(fromParent | convTypeAbbr).desc}}">{{(fromParent
+        | convTypeAbbr).abbr}}</div>
+    </div>
+    <div class="col-md-10">
+      <div style="color: darkgray;font-size: smaller  ;">Enter the question text and options if any, then click save to apply the changes.</div>
+    </div>
+    
     <div class="col-md-12">
       <app-text-editor [text]="fromParent.text" (updateText)="onUpdatetext($event)"></app-text-editor>
     </div>
   </div>
   @if (fromParent.type == 'text') {
-    <app-type-text [fromParent]="fromParent" [conv]="conv"></app-type-text>
+  <app-type-text [fromParent]="fromParent" [conv]="conv"></app-type-text>
   }
   @if (fromParent.type == 'option') {
-    <app-type-option [fromParent]="fromParent" [conv]="conv" [parentOptions]="parentOptions" [optionBoxShadow]="optionBoxShadow" [themePrimaryColor]="themePrimaryColor"></app-type-option>
+  <app-type-option [fromParent]="fromParent" [conv]="conv" [parentOptions]="parentOptions"
+    [optionBoxShadow]="optionBoxShadow" [themePrimaryColor]="themePrimaryColor"></app-type-option>
+  }
+  @if (fromParent.type == 'multi') {
+  <app-type-multi [fromParent]="fromParent" [conv]="conv" [parentOptions]="parentOptions"
+    [optionBoxShadow]="optionBoxShadow" [themePrimaryColor]="themePrimaryColor"></app-type-multi>
   }
 </div>
 <div class="modal-footer">

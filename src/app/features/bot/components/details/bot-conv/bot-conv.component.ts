@@ -76,12 +76,15 @@ export class BotConvComponent implements OnInit {
     if (lastitem) {
       id = (Number(lastitem.id) + 1).toString()
     };
-    item = { id: id, text: '', type: type?.convType, waitForReply: true };
+    item = { id: id, text: '', type: type?.convType, waitForReply: false, responseValidation: '', nextQuestion: null };
     if (type?.convType == convType.TEXT) {
       item.responseValidation = type?.name?.toLowerCase()
     }
     if (type?.convType == convType.OPTION) {
       item.options = [{ text: 'option1', value: '0' }];
+    }
+    if (type?.convType == convType.MULTI) {
+      item.options = [{ text: 'choice1', value: '0' }];
     }
     this.conv.push(item);
     const modalRef = this._modalService.open(ConvEditModalComponent,

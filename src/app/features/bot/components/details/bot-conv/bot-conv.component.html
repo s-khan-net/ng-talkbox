@@ -142,6 +142,27 @@
               </div>
             </td>
           </tr>
+          <tr>
+            <td>
+              <div style="justify-content:center; display:flex;">
+                    @if ( item.nextQuestion) {
+                      <div title="Next question: {{item.nextQuestion}}"
+                        class="linked-question" (mouseover)=" hoverNextQuestion(item.nextQuestion)"
+                        (mouseout)="hoverOutNextQuestion()"><i class="bi bi-arrow-down"></i>:
+                        {{item.nextQuestion}}
+                      </div>
+                    }
+                    @if (!item.nextQuestion) {
+                      <div
+                        title="There is no next question configured - therefore the one configured below it will be shown"
+                        class="linked-question">
+                        <i class="bi bi-arrow-down"></i>:<i class="bi bi-x-lg"
+                      style="color:red"></i>
+                    </div>
+                  }
+                </div>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

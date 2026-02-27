@@ -1,13 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
-import * as _ from 'lodash';
+import { Component, Input } from '@angular/core';
+import _ from 'lodash';
 
 @Component({
-  selector: 'app-type-option',
-  templateUrl: './type-option.component.html',
-  styleUrls: ['./type-option.component.scss'],
-  standalone: false
+  selector: 'app-type-multi',
+  standalone: false,
+  templateUrl: './type-multi.component.html',
+  styleUrl: './type-multi.component.scss',
 })
-export class TypeOptionComponent implements OnInit {
+export class TypeMultiComponent {
 
   @Input() public fromParent!: any;
   @Input() public parentOptions!: any;
@@ -26,6 +26,7 @@ export class TypeOptionComponent implements OnInit {
   ngOnInit(): void {
     if (this.conv)
       this.convCopy = _.cloneDeep(this.conv)
+    console.log('options', this.parentOptions)
   }
 
   public updateOptionText(event: any, value: string) {
@@ -33,10 +34,9 @@ export class TypeOptionComponent implements OnInit {
       if (ele.value === value)
         ele.text = event.target.value.replace("\n", "<br/>");
     });
-
   }
 
-  public removeOption(value: string) {
+    public removeOption(value: string) {
     this.parentOptions = this.parentOptions.filter((ele: any) => {
       if (ele.value === value) {
         this._removedOptions.push(ele);
@@ -95,19 +95,11 @@ export class TypeOptionComponent implements OnInit {
     console.log(this.parentOptions);
   }
 
-  public linkedQuestionEdit(linkedQuestion: any) {
-
-  }
-  public linkedQuestionRemove(option: any) {
-    this.parentOptions.forEach((o: any) => {
-      if (o.text == option.text && o.value == option.value) {
-        delete o.linkedQuestion;
-      }
-    });
+  public addNextQuestion(question: any) {
+    console.log('selected next question', question)
   }
 
-  public addLinkedQuestion(option: any) {
-    console.log('selected linked question', option)
+  public removeNext() {
+    this.fromParent.nextQuestion = null;
   }
-
 }

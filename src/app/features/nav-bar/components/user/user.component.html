@@ -1,4 +1,4 @@
-<div class="dropdown user" #user id=userComponent (click)="toggleUserNav()">
+<div class="dropdown user" #user id=userComponent (clickOutside)="showUserNav=false" (click)="toggleUserNav()">
   @if (userObj!=null) {
     <div class="dropdown-toggle user" data-toggle="dropdown">
       <img [src]="userObj?.avatar" class="rounded-circle user" style="width: 32px;">
@@ -7,7 +7,7 @@
     </div>
     <ul class="dropdown-menu" #userMnu [class.show]="showUserNav" style="margin-left: -50px;">
       <li class="dropdown-item" role="button" (click)="redirectTo('dashboard')">My Dashboard</li>
-      <li class="dropdown-item">{{userObj?.role}}</li>
+      <li class="dropdown-item"><span style="font-size: smaller;">logged in as</span> {{userObj.role?.roleName}}</li>
       <!-- <li class="dropdown-item"  role="button">
       <div class="btn btn-sm btn-info">Profile</div>
     </li> -->

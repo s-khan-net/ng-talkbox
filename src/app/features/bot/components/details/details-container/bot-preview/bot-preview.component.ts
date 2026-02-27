@@ -50,6 +50,10 @@ export class BotPreviewComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (this.bot)
       this.preview();
+    setTimeout(() => {
+      this.togglePreview();
+    }, 500);
+    
   }
 
   public preview() {

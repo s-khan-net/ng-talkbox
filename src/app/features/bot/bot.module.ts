@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Type } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DetailsComponent } from './components/details/details.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -20,6 +20,8 @@ import { TypeTextComponent } from './components/details/bot-conv/conv-edit-modal
 import { TypeOptionComponent } from './components/details/bot-conv/conv-edit-modal/type-option/type-option.component';
 import { BotGeneralComponent } from './components/details/bot-general/bot-general.component';
 import { BotPreviewComponent } from './components/details/details-container/bot-preview/bot-preview.component';
+import { TypeMultiComponent } from './components/details/bot-conv/conv-edit-modal/type-multi/type-multi.component';
+import { ClickOutsideDirective } from 'src/app/shared/directives/click-outside.directive';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { BotPreviewComponent } from './components/details/details-container/bot-
     BotSettingsComponent,
     TypeTextComponent,
     TypeOptionComponent,
+    TypeMultiComponent,
     BotGeneralComponent,
     BotPreviewComponent
   ],
@@ -45,7 +48,8 @@ import { BotPreviewComponent } from './components/details/details-container/bot-
     FormsModule,
     NgbModule,
     SharedModule,
-    ColorPickerModule
+    ColorPickerModule,
+    ClickOutsideDirective
   ]
 })
 export class BotModule { }

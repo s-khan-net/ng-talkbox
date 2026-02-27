@@ -127,6 +127,14 @@ export class ConvEditModalComponent implements OnInit {
     })[0];
     switch (this.fromParent.type) {
       case convType.MULTI:
+        question.options = this.parentOptions;
+        question.text = this.fromParent.text;
+        question.nextQuestion = this.fromParent.nextQuestion;
+        question.waitForReply = this.fromParent.waitForReply;
+        this.conv = this.convCopy;
+        this.dismiss();
+        this._changeDetectorRef.detectChanges();
+        break;
       case convType.OPTION:
         question.options = this.parentOptions;
         question.text = this.fromParent.text;
