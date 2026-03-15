@@ -3,11 +3,11 @@
 </div>
 <div class="modal-body">
   <div class="row">
-    <div class="col-md-1">
+    <div class="col-sm-1">
       <div class="btn-round item-abbr" title="{{(fromParent | convTypeAbbr).desc}}">{{(fromParent
         | convTypeAbbr).abbr}}</div>
     </div>
-    <div class="col-md-10">
+    <div class="col-sm-10">
       <div style="color: darkgray;font-size: smaller  ;">Enter the question text and options if any, then click save to apply the changes.</div>
     </div>
     
@@ -21,6 +21,10 @@
   @if (fromParent.type == 'option') {
   <app-type-option [fromParent]="fromParent" [conv]="conv" [parentOptions]="parentOptions"
     [optionBoxShadow]="optionBoxShadow" [themePrimaryColor]="themePrimaryColor"></app-type-option>
+  }
+  @if (fromParent.type == 'rating') {
+  <app-type-rating [fromParent]="fromParent" [conv]="conv" [parentOptions]="parentOptions"
+    [optionBoxShadow]="optionBoxShadow" [themePrimaryColor]="themePrimaryColor"></app-type-rating>
   }
   @if (fromParent.type == 'multi') {
   <app-type-multi [fromParent]="fromParent" [conv]="conv" [parentOptions]="parentOptions"

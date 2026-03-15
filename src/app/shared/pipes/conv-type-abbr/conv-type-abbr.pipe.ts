@@ -36,6 +36,9 @@ export class ConvTypeAbbrPipe implements PipeTransform {
     if (question.type == convType.MULTI) {
       return ConvTypes.filter(x => { return x.name == 'CHOICES' })[0]
     }
+    if (question.type == convType.RATING) {
+      return ConvTypes.filter(x => { return x.name == 'RATING' })[0]
+    }
     return res;
   }
 

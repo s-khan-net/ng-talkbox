@@ -81,10 +81,14 @@ export class BotConvComponent implements OnInit {
       item.responseValidation = type?.name?.toLowerCase()
     }
     if (type?.convType == convType.OPTION) {
-      item.options = [{ text: 'option1', value: '0' }];
+      item.options = [{ text: 'Option1', value: '0' }];
     }
     if (type?.convType == convType.MULTI) {
-      item.options = [{ text: 'choice1', value: '0' }];
+      item.options = [{ text: 'Choice1', value: '0' }];
+    }
+    if (type?.convType == convType.RATING) {
+      item.options = ['1','2','3','4','5'];
+      item.style = 'star';
     }
     this.conv.push(item);
     const modalRef = this._modalService.open(ConvEditModalComponent,

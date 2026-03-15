@@ -22,6 +22,7 @@ import { BotGeneralComponent } from './components/details/bot-general/bot-genera
 import { BotPreviewComponent } from './components/details/details-container/bot-preview/bot-preview.component';
 import { TypeMultiComponent } from './components/details/bot-conv/conv-edit-modal/type-multi/type-multi.component';
 import { ClickOutsideDirective } from 'src/app/shared/directives/click-outside.directive';
+import { TypeRatingComponent } from './components/details/bot-conv/conv-edit-modal/type-rating/type-rating.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ClickOutsideDirective } from 'src/app/shared/directives/click-outside.d
     TypeOptionComponent,
     TypeMultiComponent,
     BotGeneralComponent,
-    BotPreviewComponent
+    BotPreviewComponent,
+    TypeRatingComponent
   ],
   imports: [
     CommonModule,
